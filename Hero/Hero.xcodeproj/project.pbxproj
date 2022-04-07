@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29B9337C27FF5D9900A1907A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9337B27FF5D9900A1907A /* RegisterViewController.swift */; };
+		29B9337E27FF5DB600A1907A /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9337D27FF5DB600A1907A /* RegisterViewModel.swift */; };
 		29D734A327FB73F400C4F2C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D734A227FB73F400C4F2C3 /* AppDelegate.swift */; };
 		29D734A527FB73F400C4F2C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D734A427FB73F400C4F2C3 /* SceneDelegate.swift */; };
 		29D734A727FB73F400C4F2C3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D734A627FB73F400C4F2C3 /* LoginViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29B9337B27FF5D9900A1907A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = ../../../../../Study/RegisterViewController.swift; sourceTree = "<group>"; };
+		29B9337D27FF5DB600A1907A /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewModel.swift; path = ../../../../../Study/RegisterViewModel.swift; sourceTree = "<group>"; };
 		29D7349F27FB73F400C4F2C3 /* Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29D734A227FB73F400C4F2C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29D734A427FB73F400C4F2C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 		29D734BE27FCDBFE00C4F2C3 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				29B9337B27FF5D9900A1907A /* RegisterViewController.swift */,
+				29B9337D27FF5DB600A1907A /* RegisterViewModel.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -201,6 +207,8 @@
 			files = (
 				29D734A727FB73F400C4F2C3 /* LoginViewController.swift in Sources */,
 				29D734C327FDC10900C4F2C3 /* KeyboardViewController.swift in Sources */,
+				29B9337C27FF5D9900A1907A /* RegisterViewController.swift in Sources */,
+				29B9337E27FF5DB600A1907A /* RegisterViewModel.swift in Sources */,
 				29D734A327FB73F400C4F2C3 /* AppDelegate.swift in Sources */,
 				29D734A527FB73F400C4F2C3 /* SceneDelegate.swift in Sources */,
 				29D734C027FCDC2B00C4F2C3 /* LoginViewModel.swift in Sources */,
