@@ -8,6 +8,39 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
+    
+    var lightgrey = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.00)
+    let darkGrey = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.00)
+    
+    lazy var viewBackground: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = lightgrey
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var perfilImageView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.backgroundColor = darkGrey
+        imageView.image = UIImage(systemName: "person.fill")
+        imageView.tintColor = .lightGray
+        imageView.layer.borderWidth = 7
+        imageView.layer.borderColor = lightgrey.cgColor
+        imageView.layer.cornerRadius = view.frame.width/10
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    lazy var setImageButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.backgroundColor = lightgrey
+        button.layer.cornerRadius = 10
+        button.setImage(UIImage(systemName: "camera.rotate"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(actionSetImageButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,10 +49,38 @@ class RegisterViewController: UIViewController {
         setupView()
         setupConstraints()
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
     func setupView() {
-        
+        view.addSubview(viewBackground)
+        view.addSubview(perfilImageView)
+        view.addSubview(setImageButton)
     }
     func setupConstraints() {
-        
+        let viewBackgroundConstraints = [
+            viewBackground.topAnchor.constraint(equalTo: view.topAnchor),
+            viewBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            viewBackground.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            viewBackground.heightAnchor.constraint(equalToConstant: ((view.frame.height/3)/3)*2)
+        ]
+        let perfilImageViewConstraints = [
+            perfilImageView.topAnchor.constraint(equalTo: viewBackground.bottomAnchor, constant: -(view.frame.height/8)),
+            perfilImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            perfilImageView.heightAnchor.constraint(equalToConstant: ((view.frame.height/3)/3)*2.2),
+            perfilImageView.widthAnchor.constraint(equalToConstant: ((view.frame.height/3)/3)*2.2)
+        ]
+        let setImageButtonConstraints = [
+            setImageButton.topAnchor.constraint(equalTo: viewBackground.bottomAnchor, constant: view.frame.height/35),
+            setImageButton.centerXAnchor.constraint(equalTo: perfilImageView.trailingAnchor),
+            setImageButton.heightAnchor.constraint(equalToConstant: view.frame.height/17),
+            setImageButton.widthAnchor.constraint(equalToConstant: view.frame.width/8)
+        ]
+        NSLayoutConstraint.activate(viewBackgroundConstraints)
+        NSLayoutConstraint.activate(perfilImageViewConstraints)
+        NSLayoutConstraint.activate(setImageButtonConstraints)
+    }
+    
+    @objc func actionSetImageButton() {
+        print("Alterar Foto")
     }
 }
