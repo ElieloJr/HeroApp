@@ -102,8 +102,19 @@ class RegisterViewController: UIViewController {
         textField.textColor = UIColor.black
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
+        textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
+    }()
+    lazy var registerButton: UIButton = {
+        var button = UIButton(frame: .zero)
+        button.setTitle("Register", for: .normal)
+        button.titleLabel?.font = button.titleLabel?.font.withSize(20)
+        button.backgroundColor = moreLightgrey
+        button.layer.cornerRadius = 5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(actionRegisterButton), for: .touchUpInside)
+        return button
     }()
 
     override func viewDidLoad() {
@@ -125,6 +136,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(emailTextField)
         view.addSubview(passwordLabel)
         view.addSubview(passwordTextField)
+        view.addSubview(registerButton)
     }
     func setupConstraints() {
         let viewBackgroundConstraints = [
@@ -175,6 +187,12 @@ class RegisterViewController: UIViewController {
             passwordTextField.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
             passwordTextField.heightAnchor.constraint(equalToConstant: self.view.frame.height/15)
         ]
+        let registerButtonContraints = [
+            registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            registerButton.heightAnchor.constraint(equalToConstant: self.view.frame.height/12),
+            registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(self.view.frame.height/15))
+        ]
         NSLayoutConstraint.activate(viewBackgroundConstraints)
         NSLayoutConstraint.activate(perfilImageViewConstraints)
         NSLayoutConstraint.activate(setImageButtonConstraints)
@@ -184,6 +202,7 @@ class RegisterViewController: UIViewController {
         NSLayoutConstraint.activate(emailTextFieldConstraints)
         NSLayoutConstraint.activate(passwordLabelConstraints)
         NSLayoutConstraint.activate(passwordTextFieldConstraints)
+        NSLayoutConstraint.activate(registerButtonContraints)
     }
     
     @objc func actionSetImageButton() {
@@ -192,6 +211,12 @@ class RegisterViewController: UIViewController {
         vc.delegate = self
         vc.allowsEditing = true
         present(vc, animated: true)
+    }
+    @objc func actionRegisterButton() {
+        print("Imagem: \(String(describing: perfilImageView.image))")
+        print("Nome: \(String(describing: nameTextField.text))")
+        print("Email: \(String(describing: emailTextField.text))")
+        print("Senha: \(String(describing: passwordTextField.text))")
     }
 }
 
