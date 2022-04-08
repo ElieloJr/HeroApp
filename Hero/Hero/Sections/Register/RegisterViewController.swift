@@ -71,6 +71,19 @@ class RegisterViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var emailTextField: UITextField = {
+        let textField = UITextField(frame: .zero)
+        textField.layer.borderWidth = 0
+        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.cornerRadius = 5
+        textField.backgroundColor = .white
+        textField.font = textField.font?.withSize(22)
+        textField.textColor = UIColor.black
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftViewMode = .always
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +101,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(nameLabel)
         view.addSubview(nameTextField)
         view.addSubview(emailLabel)
+        view.addSubview(emailTextField)
     }
     func setupConstraints() {
         let viewBackgroundConstraints = [
@@ -122,12 +136,19 @@ class RegisterViewController: UIViewController {
             emailLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 16),
             emailLabel.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor)
         ]
+        let emailTextFieldConstraints = [
+            emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 2),
+            emailTextField.leadingAnchor.constraint(equalTo: emailLabel.leadingAnchor),
+            emailTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
+            emailTextField.heightAnchor.constraint(equalToConstant: self.view.frame.height/15)
+        ]
         NSLayoutConstraint.activate(viewBackgroundConstraints)
         NSLayoutConstraint.activate(perfilImageViewConstraints)
         NSLayoutConstraint.activate(setImageButtonConstraints)
         NSLayoutConstraint.activate(nameLabelConstraints)
         NSLayoutConstraint.activate(nameTextFieldConstraints)
         NSLayoutConstraint.activate(emailLabelConstraints)
+        NSLayoutConstraint.activate(emailTextFieldConstraints)
     }
     
     @objc func actionSetImageButton() {
