@@ -63,6 +63,14 @@ class RegisterViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+    lazy var alertNameLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "At least 3 letters"
+        label.textColor = .red
+        label.font = label.font.withSize(view.frame.width/25)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var emailLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.text = "Email:"
@@ -83,6 +91,14 @@ class RegisterViewController: UIViewController {
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
+    }()
+    lazy var alertEmailLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Invalid email"
+        label.textColor = .red
+        label.font = label.font.withSize(view.frame.width/25)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     lazy var passwordLabel: UILabel = {
         let label = UILabel(frame: .zero)
@@ -105,6 +121,14 @@ class RegisterViewController: UIViewController {
         textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
+    }()
+    lazy var alertPasswordLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "At least 8 characters"
+        label.textColor = .red
+        label.font = label.font.withSize(view.frame.width/25)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     lazy var registerButton: UIButton = {
         var button = UIButton(frame: .zero)
@@ -130,12 +154,19 @@ class RegisterViewController: UIViewController {
         view.addSubview(viewBackground)
         view.addSubview(perfilImageView)
         view.addSubview(setImageButton)
+        
         view.addSubview(nameLabel)
         view.addSubview(nameTextField)
+        view.addSubview(alertNameLabel)
+        
         view.addSubview(emailLabel)
         view.addSubview(emailTextField)
+        view.addSubview(alertEmailLabel)
+        
         view.addSubview(passwordLabel)
         view.addSubview(passwordTextField)
+        view.addSubview(alertPasswordLabel)
+        
         view.addSubview(registerButton)
     }
     func setupConstraints() {
@@ -167,8 +198,12 @@ class RegisterViewController: UIViewController {
             nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             nameTextField.heightAnchor.constraint(equalToConstant: self.view.frame.height/15)
         ]
+        let alertNameLabelConstraints = [
+            alertNameLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 2),
+            alertNameLabel.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor, constant: 10)
+        ]
         let emailLabelConstraints = [
-            emailLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 16),
+            emailLabel.topAnchor.constraint(equalTo: alertNameLabel.bottomAnchor, constant: 16),
             emailLabel.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor)
         ]
         let emailTextFieldConstraints = [
@@ -177,8 +212,12 @@ class RegisterViewController: UIViewController {
             emailTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
             emailTextField.heightAnchor.constraint(equalToConstant: self.view.frame.height/15)
         ]
+        let alertEmailLabelContraints = [
+            alertEmailLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 2),
+            alertEmailLabel.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor, constant: 10)
+        ]
         let passwordLabelConstraints = [
-            passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 16),
+            passwordLabel.topAnchor.constraint(equalTo: alertEmailLabel.bottomAnchor, constant: 16),
             passwordLabel.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor)
         ]
         let passwordTextFieldConstraints = [
@@ -187,21 +226,32 @@ class RegisterViewController: UIViewController {
             passwordTextField.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
             passwordTextField.heightAnchor.constraint(equalToConstant: self.view.frame.height/15)
         ]
+        let alertPasswordLabelConstraints = [
+            alertPasswordLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 2),
+            alertPasswordLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor, constant: 10)
+        ]
         let registerButtonContraints = [
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             registerButton.heightAnchor.constraint(equalToConstant: self.view.frame.height/12),
-            registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(self.view.frame.height/15))
+            registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(self.view.frame.height/25))
         ]
         NSLayoutConstraint.activate(viewBackgroundConstraints)
         NSLayoutConstraint.activate(perfilImageViewConstraints)
         NSLayoutConstraint.activate(setImageButtonConstraints)
+        
         NSLayoutConstraint.activate(nameLabelConstraints)
         NSLayoutConstraint.activate(nameTextFieldConstraints)
+        NSLayoutConstraint.activate(alertNameLabelConstraints)
+        
         NSLayoutConstraint.activate(emailLabelConstraints)
         NSLayoutConstraint.activate(emailTextFieldConstraints)
+        NSLayoutConstraint.activate(alertEmailLabelContraints)
+        
         NSLayoutConstraint.activate(passwordLabelConstraints)
         NSLayoutConstraint.activate(passwordTextFieldConstraints)
+        NSLayoutConstraint.activate(alertPasswordLabelConstraints)
+        
         NSLayoutConstraint.activate(registerButtonContraints)
     }
     
