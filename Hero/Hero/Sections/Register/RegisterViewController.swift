@@ -50,6 +50,19 @@ class RegisterViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var nameTextField: UITextField = {
+        let textField = UITextField(frame: .zero)
+        textField.layer.borderWidth = 0
+        textField.layer.borderColor = UIColor.red.cgColor
+        textField.layer.cornerRadius = 5
+        textField.backgroundColor = .white
+        textField.font = textField.font?.withSize(22)
+        textField.textColor = UIColor.black
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftViewMode = .always
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +78,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(perfilImageView)
         view.addSubview(setImageButton)
         view.addSubview(nameLabel)
+        view.addSubview(nameTextField)
     }
     func setupConstraints() {
         let viewBackgroundConstraints = [
@@ -89,10 +103,17 @@ class RegisterViewController: UIViewController {
             nameLabel.topAnchor.constraint(equalTo: perfilImageView.bottomAnchor, constant: self.view.frame.height/30),
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ]
+        let nameTextFieldConstraints = [
+            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2),
+            nameTextField.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            nameTextField.heightAnchor.constraint(equalToConstant: self.view.frame.height/15)
+        ]
         NSLayoutConstraint.activate(viewBackgroundConstraints)
         NSLayoutConstraint.activate(perfilImageViewConstraints)
         NSLayoutConstraint.activate(setImageButtonConstraints)
         NSLayoutConstraint.activate(nameLabelConstraints)
+        NSLayoutConstraint.activate(nameTextFieldConstraints)
     }
     
     @objc func actionSetImageButton() {
