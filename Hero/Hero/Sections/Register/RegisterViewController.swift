@@ -9,8 +9,9 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     
-    var lightgrey = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.00)
+    let lightgrey = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.00)
     let darkGrey = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.00)
+    let moreLightgrey = UIColor(red: 0.60, green: 0.60, blue: 0.60, alpha: 1.00)
     
     lazy var viewBackground: UIView = {
         let view = UIView(frame: .zero)
@@ -41,6 +42,14 @@ class RegisterViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    lazy var nameLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Name:"
+        label.textColor = moreLightgrey
+        label.font = label.font.withSize(view.frame.width/20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +64,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(viewBackground)
         view.addSubview(perfilImageView)
         view.addSubview(setImageButton)
+        view.addSubview(nameLabel)
     }
     func setupConstraints() {
         let viewBackgroundConstraints = [
@@ -75,9 +85,14 @@ class RegisterViewController: UIViewController {
             setImageButton.heightAnchor.constraint(equalToConstant: view.frame.height/17),
             setImageButton.widthAnchor.constraint(equalToConstant: view.frame.width/8)
         ]
+        let nameLabelConstraints = [
+            nameLabel.topAnchor.constraint(equalTo: perfilImageView.bottomAnchor, constant: self.view.frame.height/30),
+            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        ]
         NSLayoutConstraint.activate(viewBackgroundConstraints)
         NSLayoutConstraint.activate(perfilImageViewConstraints)
         NSLayoutConstraint.activate(setImageButtonConstraints)
+        NSLayoutConstraint.activate(nameLabelConstraints)
     }
     
     @objc func actionSetImageButton() {
