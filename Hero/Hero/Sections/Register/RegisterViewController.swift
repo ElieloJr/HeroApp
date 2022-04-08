@@ -9,6 +9,7 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     
+    let viewModel = RegisterViewModel()
     let lightgrey = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.00)
     let darkGrey = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.00)
     let moreLightgrey = UIColor(red: 0.60, green: 0.60, blue: 0.60, alpha: 1.00)
@@ -65,7 +66,6 @@ class RegisterViewController: UIViewController {
     }()
     lazy var alertNameLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "At least 3 letters"
         label.textColor = .red
         label.font = label.font.withSize(view.frame.width/25)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +94,6 @@ class RegisterViewController: UIViewController {
     }()
     lazy var alertEmailLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "Invalid email"
         label.textColor = .red
         label.font = label.font.withSize(view.frame.width/25)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -124,7 +123,6 @@ class RegisterViewController: UIViewController {
     }()
     lazy var alertPasswordLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "At least 8 characters"
         label.textColor = .red
         label.font = label.font.withSize(view.frame.width/25)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -147,6 +145,7 @@ class RegisterViewController: UIViewController {
         
         setupView()
         setupConstraints()
+        viewModel.delegate = self
     }
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -263,10 +262,32 @@ class RegisterViewController: UIViewController {
         present(vc, animated: true)
     }
     @objc func actionRegisterButton() {
-        print("Imagem: \(String(describing: perfilImageView.image))")
-        print("Nome: \(String(describing: nameTextField.text))")
-        print("Email: \(String(describing: emailTextField.text))")
-        print("Senha: \(String(describing: passwordTextField.text))")
+        self.viewModel.registerButtonsClick(name: nameTextField.text, email: emailTextField.text, password: passwordTextField.text)
+    }
+}
+
+extension RegisterViewController: RegisterViewDelegate {
+    func showAlertInName(with message: String) {
+        nameTextField.layer.borderWidth = 3
+        alertNameLabel.text = message
+    }
+    func showAlertInEmail(with message: String) {
+        emailTextField.layer.borderWidth = 3
+        alertEmailLabel.text = message
+    }
+    func showAlertInPassword(with message: String) {
+        passwordTextField.layer.borderWidth = 3
+        alertPasswordLabel.text = message
+    }
+    func setTextFieldsToDefault() {
+        nameTextField.layer.borderWidth = 0
+        alertNameLabel.text = ""
+        
+        emailTextField.layer.borderWidth = 0
+        alertEmailLabel.text = ""
+        
+        passwordTextField.layer.borderWidth = 0
+        alertPasswordLabel.text = ""
     }
 }
 
