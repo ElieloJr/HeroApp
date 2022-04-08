@@ -138,10 +138,15 @@ class RegisterViewController: UIViewController {
         button.addTarget(self, action: #selector(actionRegisterButton), for: .touchUpInside)
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 0.60)
+        view.backgroundColor = darkGrey
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"),
+                                                           landscapeImagePhone: UIImage(systemName: "arrow.left"),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(actionBackButton))
         
         setupView()
         setupConstraints()
@@ -253,7 +258,9 @@ class RegisterViewController: UIViewController {
         
         NSLayoutConstraint.activate(registerButtonContraints)
     }
-    
+    @objc func actionBackButton() {
+        dismiss(animated: true, completion: nil)
+    }
     @objc func actionSetImageButton() {
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
@@ -263,6 +270,7 @@ class RegisterViewController: UIViewController {
     }
     @objc func actionRegisterButton() {
         self.viewModel.registerButtonsClick(name: nameTextField.text, email: emailTextField.text, password: passwordTextField.text)
+        //dismiss(animated: true, completion: nil)
     }
 }
 

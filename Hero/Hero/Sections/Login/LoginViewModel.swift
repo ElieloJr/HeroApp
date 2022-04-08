@@ -32,6 +32,6 @@ class LoginViewModel {
     }
     func registerButtonClick() {
         print("Se pá registra")
-        //self.delegate?.goToRegisterView()
+        self.delegate?.goToRegisterView()
     }
 }
