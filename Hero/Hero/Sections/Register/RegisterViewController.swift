@@ -84,6 +84,14 @@ class RegisterViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+    lazy var passwordLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Password:"
+        label.textColor = moreLightgrey
+        label.font = label.font.withSize(view.frame.width/20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +110,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(nameTextField)
         view.addSubview(emailLabel)
         view.addSubview(emailTextField)
+        view.addSubview(passwordLabel)
     }
     func setupConstraints() {
         let viewBackgroundConstraints = [
@@ -142,6 +151,10 @@ class RegisterViewController: UIViewController {
             emailTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
             emailTextField.heightAnchor.constraint(equalToConstant: self.view.frame.height/15)
         ]
+        let passwordLabelConstraints = [
+            passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 16),
+            passwordLabel.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor)
+        ]
         NSLayoutConstraint.activate(viewBackgroundConstraints)
         NSLayoutConstraint.activate(perfilImageViewConstraints)
         NSLayoutConstraint.activate(setImageButtonConstraints)
@@ -149,6 +162,7 @@ class RegisterViewController: UIViewController {
         NSLayoutConstraint.activate(nameTextFieldConstraints)
         NSLayoutConstraint.activate(emailLabelConstraints)
         NSLayoutConstraint.activate(emailTextFieldConstraints)
+        NSLayoutConstraint.activate(passwordLabelConstraints)
     }
     
     @objc func actionSetImageButton() {
