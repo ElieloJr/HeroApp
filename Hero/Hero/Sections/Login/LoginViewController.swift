@@ -128,6 +128,7 @@ class LoginViewController: KeyboardViewController {
         textField.layer.cornerRadius = 5
         textField.backgroundColor = .white
         textField.font = textField.font?.withSize(22)
+        textField.autocapitalizationType = UITextAutocapitalizationType.none
         textField.textColor = UIColor.black
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always

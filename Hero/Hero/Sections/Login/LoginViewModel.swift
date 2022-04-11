@@ -18,20 +18,43 @@ protocol LoginViewDelegate: AnyObject {
 
 class LoginViewModel {
     var delegate: LoginViewDelegate?
+    var canEnter = true
     
     func enterButtonsClick(_ email: String?, _ password: String?) {
         self.delegate?.setTextFieldsToDefault()
         guard let email = email, let password = password else { return }
-        if email == ""  {
-            self.delegate?.setEmailToRed()
+        canEnter = true
+        
+        verifyFieldEmail(with: email)
+        verifyFieldPassword(with: password)
+        
+        if !canEnter { return }
+        
+        if let existingItem = getUserBy(email: email) {
+            if validateEmail(email, userData: existingItem) && validatePassword(password, userData: existingItem) {
+                //self.delegate?.goToHomeView()
+            } else {
+                self.delegate?.alertDataNoFound()
+            }
+        } else {
+            self.delegate?.alertDataNoFound()
         }
-        if password == "" {
-            self.delegate?.setPasswordToRed()
-        }
-        //self.delegate?.goToHomeView()
     }
     func registerButtonClick() {
         self.delegate?.goToRegisterView()
+    }
+    
+    private func verifyFieldEmail(with email: String) {
+        if email == ""  {
+            self.delegate?.setEmailToRed()
+            canEnter = false
+        }
+    }
+    private func verifyFieldPassword(with password: String) {
+        if password == "" {
+            self.delegate?.setPasswordToRed()
+            canEnter = false
+        }
     }
     private func getUserBy(email: String) -> [String: Any]? {
         var item: CFTypeRef?
@@ -47,5 +70,19 @@ class LoginViewModel {
             kSecReturnAttributes as String: true,
             kSecReturnData as String: true,
          ]
+    }
+    private func validateEmail(_ email: String, userData:[String: Any]) -> Bool {
+        if let id = userData[kSecAttrAccount as String] as? String {
+            return email == id
+        } else {
+            return false
+        }
+    }
+    private func validatePassword(_ userPassword: String, userData:[String: Any]) -> Bool {
+        if let password = userData[kSecValueData as String] as? Data {
+            return password == userPassword.data(using: .utf8)
+        } else {
+            return false
+        }
     }
 }
