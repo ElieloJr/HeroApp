@@ -32,7 +32,7 @@ class LoginViewModel {
         
         if let existingItem = getUserBy(email: email) {
             if validateEmail(email, userData: existingItem) && validatePassword(password, userData: existingItem) {
-                //self.delegate?.goToHomeView()
+                self.delegate?.goToHomeView()
             } else {
                 self.delegate?.alertDataNoFound()
             }
