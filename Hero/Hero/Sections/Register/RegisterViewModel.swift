@@ -54,4 +54,13 @@ class RegisterViewModel {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
+    func generateKeychainAttributes(name: String, email: String, password: String, image: String) -> [String: Any] {
+        return [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: name,
+            kSecAttrAccount as String: email,
+            kSecValueData as String: password.data(using: .utf8) as Any,
+            kSecAttrDescription as String: image,
+        ]
+    }
 }
