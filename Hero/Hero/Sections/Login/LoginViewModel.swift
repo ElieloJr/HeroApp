@@ -33,4 +33,19 @@ class LoginViewModel {
     func registerButtonClick() {
         self.delegate?.goToRegisterView()
     }
+    private func getUserBy(email: String) -> [String: Any]? {
+        var item: CFTypeRef?
+        if SecItemCopyMatching(makeQuery(email) as CFDictionary, &item) == noErr {
+            return item as? [String: Any]
+        } else { return nil }
+    }
+    private func makeQuery(_ element: String) -> [String : Any]{
+         return [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: element,
+            kSecMatchLimit as String: kSecMatchLimitOne,
+            kSecReturnAttributes as String: true,
+            kSecReturnData as String: true,
+         ]
+    }
 }
