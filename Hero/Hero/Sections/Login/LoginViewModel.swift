@@ -110,4 +110,15 @@ class LoginViewModel {
         let attributes: [String: Any] = [kSecValueData as String: email.data(using: .utf8)!]
         return SecItemUpdate(query as CFDictionary, attributes as CFDictionary) == noErr
     }
+    func getLastAccessedEmail() -> String {
+        var item: CFTypeRef?
+        if SecItemCopyMatching(makeQuery("lastAccessedEmail") as CFDictionary, &item) == noErr {
+            if let existingItem = item as? [String: Any],
+               let loginData = existingItem[kSecValueData as String] as? Data,
+               let login = String(data: loginData, encoding: .utf8) {
+                return "\(login)"
+            }
+        }
+        return ""
+    }
 }

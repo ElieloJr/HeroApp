@@ -183,6 +183,7 @@ class LoginViewController: KeyboardViewController {
     func setupView() {
         view.addSubview(imageView)
         view.addSubview(contentView)
+        emailTextField.text = self.viewModel.getLastAccessedEmail()
     }
     
     func setupConstraints() {
