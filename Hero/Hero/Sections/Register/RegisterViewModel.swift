@@ -63,4 +63,7 @@ class RegisterViewModel {
             kSecAttrDescription as String: image,
         ]
     }
+    func registerUserOnKeychain(_ user: [String:Any]) -> Bool {
+        return SecItemAdd(user as CFDictionary, nil) == noErr
+    }
 }
