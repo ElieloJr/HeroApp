@@ -32,7 +32,9 @@ class LoginViewModel {
         
         if let existingItem = getUserBy(email: email) {
             if validateEmail(email, userData: existingItem) && validatePassword(password, userData: existingItem) {
-                self.delegate?.goToHomeView()
+                if registerAccess(with: email) {
+                    self.delegate?.goToHomeView()
+                }
             } else {
                 self.delegate?.alertDataNoFound()
             }
@@ -56,6 +58,7 @@ class LoginViewModel {
             canEnter = false
         }
     }
+    
     private func getUserBy(email: String) -> [String: Any]? {
         var item: CFTypeRef?
         if SecItemCopyMatching(makeQuery(email) as CFDictionary, &item) == noErr {
@@ -84,5 +87,27 @@ class LoginViewModel {
         } else {
             return false
         }
+    }
+    
+    private func registerAccess(with email: String) -> Bool {
+        return addLastAccessedEmail(email: email) ? true : updateLastAccessedEmail(email: email)
+    }
+    private func addLastAccessedEmail(email: String) -> Bool {
+        let attributesAdd: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: "lastAccessedEmail",
+            kSecAttrService as String: "service",
+            kSecValueData as String: email.data(using: .utf8)!
+        ]
+        return SecItemAdd(attributesAdd as CFDictionary, nil) == noErr
+    }
+    private func updateLastAccessedEmail(email: String) -> Bool {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: "lastAccessedEmail",
+            kSecAttrService as String: "service",
+        ]
+        let attributes: [String: Any] = [kSecValueData as String: email.data(using: .utf8)!]
+        return SecItemUpdate(query as CFDictionary, attributes as CFDictionary) == noErr
     }
 }
