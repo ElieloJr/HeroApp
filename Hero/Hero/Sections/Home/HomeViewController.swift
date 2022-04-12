@@ -21,6 +21,12 @@ class HomeViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var favoriteHeroTableView: UITableView = {
+        let tableView = UITableView(frame: .zero)
+        tableView.backgroundColor = darkGrey
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,13 +68,21 @@ class HomeViewController: UIViewController {
     }
     func setupView() {
         view.addSubview(favoritesLabel)
+        view.addSubview(favoriteHeroTableView)
     }
     func setupConstraints() {
         let favoritesLabelConstraints = [
             favoritesLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/7),
             favoritesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/15)
         ]
+        let favoriteHeroTableViewConstraints = [
+            favoriteHeroTableView.topAnchor.constraint(equalTo: favoritesLabel.bottomAnchor, constant: 20),
+            favoriteHeroTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            favoriteHeroTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            favoriteHeroTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
         NSLayoutConstraint.activate(favoritesLabelConstraints)
+        NSLayoutConstraint.activate(favoriteHeroTableViewConstraints)
     }
     
     @objc func exitButton() {
