@@ -13,11 +13,22 @@ class HomeViewController: UIViewController {
     let darkGrey = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.00)
     let moreLightgrey = UIColor(red: 0.60, green: 0.60, blue: 0.60, alpha: 1.00)
     
+    lazy var favoritesLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Favorites"
+        label.textColor = .white
+        label.font = label.font.withSize(view.frame.width/20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = darkGrey
         
         setNavigationItem()
+        setupView()
+        setupConstraints()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -48,6 +59,16 @@ class HomeViewController: UIViewController {
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: self.view.frame.height/30)!
         ]
+    }
+    func setupView() {
+        view.addSubview(favoritesLabel)
+    }
+    func setupConstraints() {
+        let favoritesLabelConstraints = [
+            favoritesLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: self.view.frame.height/7),
+            favoritesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/15)
+        ]
+        NSLayoutConstraint.activate(favoritesLabelConstraints)
     }
     
     @objc func exitButton() {
