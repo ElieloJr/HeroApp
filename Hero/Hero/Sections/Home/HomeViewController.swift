@@ -16,5 +16,26 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = darkGrey
+        
+        setNavigationItem()
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
+    func setNavigationItem() {
+        let leftButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 60))
+        leftButton.setImage(UIImage(systemName: "person.fill"), for: .normal)
+        leftButton.tintColor = .white
+        leftButton.backgroundColor = lightgrey
+        leftButton.contentVerticalAlignment = .fill
+        leftButton.contentHorizontalAlignment = .fill
+        leftButton.layer.cornerRadius = 10
+        leftButton.addTarget(self, action: #selector(exitButton), for: .touchUpInside)
+        
+        let leftItem = UIBarButtonItem(customView: leftButton)
+        self.navigationItem.leftBarButtonItem = leftItem
+    }
+    @objc func exitButton() {
+        print("Saiu")
+        // dismiss(animated: true, completion: nil)
     }
 }
