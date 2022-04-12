@@ -33,6 +33,12 @@ class HomeViewController: UIViewController {
         
         let leftItem = UIBarButtonItem(customView: leftButton)
         self.navigationItem.leftBarButtonItem = leftItem
+        self.navigationItem.title = "My Hero"
+        self.navigationController?.navigationBar.titleTextAttributes =
+        [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: self.view.frame.height/35)!
+        ]
     }
     @objc func exitButton() {
         print("Saiu")
