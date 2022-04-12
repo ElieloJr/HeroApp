@@ -18,6 +18,7 @@
 		29D734C027FCDC2B00C4F2C3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D734BF27FCDC2B00C4F2C3 /* LoginViewModel.swift */; };
 		29D734C327FDC10900C4F2C3 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D734C227FDC10900C4F2C3 /* KeyboardViewController.swift */; };
 		29DDFAF02804B07100EDE2B7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFAEF2804B07100EDE2B7 /* HomeViewController.swift */; };
+		29DDFAF22805B64300EDE2B7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFAF12805B64300EDE2B7 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		29D734BF27FCDC2B00C4F2C3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		29D734C227FDC10900C4F2C3 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		29DDFAEF2804B07100EDE2B7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		29DDFAF12805B64300EDE2B7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				29DDFAEF2804B07100EDE2B7 /* HomeViewController.swift */,
+				29DDFAF12805B64300EDE2B7 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				29D734A727FB73F400C4F2C3 /* LoginViewController.swift in Sources */,
 				29D734C327FDC10900C4F2C3 /* KeyboardViewController.swift in Sources */,
 				29B9338227FF601400A1907A /* RegisterViewController.swift in Sources */,
+				29DDFAF22805B64300EDE2B7 /* HomeViewModel.swift in Sources */,
 				29B9338427FF602D00A1907A /* RegisterViewModel.swift in Sources */,
 				29D734A327FB73F400C4F2C3 /* AppDelegate.swift in Sources */,
 				29DDFAF02804B07100EDE2B7 /* HomeViewController.swift in Sources */,
