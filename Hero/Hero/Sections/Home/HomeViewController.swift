@@ -31,17 +31,30 @@ class HomeViewController: UIViewController {
         leftButton.layer.cornerRadius = 10
         leftButton.addTarget(self, action: #selector(exitButton), for: .touchUpInside)
         
+        let rightButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 45, height: 40))
+        rightButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        rightButton.tintColor = .white
+        rightButton.contentVerticalAlignment = .fill
+        rightButton.contentHorizontalAlignment = .fill
+        rightButton.addTarget(self, action: #selector(searchButton), for: .touchUpInside)
+        
         let leftItem = UIBarButtonItem(customView: leftButton)
+        let rightItem = UIBarButtonItem(customView: rightButton)
         self.navigationItem.leftBarButtonItem = leftItem
+        self.navigationItem.rightBarButtonItem = rightItem
+        
         self.navigationItem.title = "My Hero"
-        self.navigationController?.navigationBar.titleTextAttributes =
-        [
+        self.navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: self.view.frame.height/35)!
+            NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: self.view.frame.height/30)!
         ]
     }
+    
     @objc func exitButton() {
-        print("Saiu")
-        // dismiss(animated: true, completion: nil)
+        // print("Saiu")
+        dismiss(animated: true, completion: nil)
+    }
+    @objc func searchButton() {
+        print("Busca")
     }
 }
