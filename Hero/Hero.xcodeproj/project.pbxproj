@@ -17,6 +17,7 @@
 		29D734B227FB73F500C4F2C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29D734B027FB73F500C4F2C3 /* LaunchScreen.storyboard */; };
 		29D734C027FCDC2B00C4F2C3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D734BF27FCDC2B00C4F2C3 /* LoginViewModel.swift */; };
 		29D734C327FDC10900C4F2C3 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D734C227FDC10900C4F2C3 /* KeyboardViewController.swift */; };
+		29DDFAF02804B07100EDE2B7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFAEF2804B07100EDE2B7 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		29D734B327FB73F500C4F2C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29D734BF27FCDC2B00C4F2C3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		29D734C227FDC10900C4F2C3 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		29DDFAEF2804B07100EDE2B7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				29D734BD27FCDBF400C4F2C3 /* Login */,
 				29B9338027FF5FF700A1907A /* Register */,
+				29DDFAEE2804B02900EDE2B7 /* Home */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -133,6 +136,14 @@
 				29D734C227FDC10900C4F2C3 /* KeyboardViewController.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		29DDFAEE2804B02900EDE2B7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				29DDFAEF2804B07100EDE2B7 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +221,7 @@
 				29B9338227FF601400A1907A /* RegisterViewController.swift in Sources */,
 				29B9338427FF602D00A1907A /* RegisterViewModel.swift in Sources */,
 				29D734A327FB73F400C4F2C3 /* AppDelegate.swift in Sources */,
+				29DDFAF02804B07100EDE2B7 /* HomeViewController.swift in Sources */,
 				29D734A527FB73F400C4F2C3 /* SceneDelegate.swift in Sources */,
 				29D734C027FCDC2B00C4F2C3 /* LoginViewModel.swift in Sources */,
 				29D734AD27FB73F400C4F2C3 /* Hero.xcdatamodeld in Sources */,

@@ -128,6 +128,7 @@ class LoginViewController: KeyboardViewController {
         textField.layer.cornerRadius = 5
         textField.backgroundColor = .white
         textField.font = textField.font?.withSize(22)
+        textField.autocapitalizationType = UITextAutocapitalizationType.none
         textField.textColor = UIColor.black
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
@@ -182,6 +183,7 @@ class LoginViewController: KeyboardViewController {
     func setupView() {
         view.addSubview(imageView)
         view.addSubview(contentView)
+        emailTextField.text = self.viewModel.getLastAccessedEmail()
     }
     
     func setupConstraints() {
@@ -225,7 +227,9 @@ extension LoginViewController: LoginViewDelegate {
         alertLabel.isHidden = false
     }
     func goToHomeView() {
-        //navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
+        let homeController = UINavigationController(rootViewController: HomeViewController())
+        homeController.modalPresentationStyle = .fullScreen
+        present(homeController, animated: true)
     }
     func goToRegisterView() {
         let registerController = UINavigationController(rootViewController: RegisterViewController())
