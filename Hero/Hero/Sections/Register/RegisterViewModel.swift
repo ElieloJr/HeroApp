@@ -12,13 +12,14 @@ protocol RegisterViewDelegate: AnyObject {
     func showAlertInEmail(with message: String)
     func showAlertInPassword(with message: String)
     func setTextFieldsToDefault()
+    func dismissPage()
 }
 
 class RegisterViewModel {
     var delegate: RegisterViewDelegate?
     private var canRegister = true
     
-    func registerButtonsClick(name: String?, email: String?, password: String?) {
+    func registerButtonsClick(name: String?, email: String?, password: String?, image: UIImage) {
         guard let name = name, let email = email, let password = password else { return }
         self.delegate?.setTextFieldsToDefault()
         canRegister = true
@@ -29,7 +30,12 @@ class RegisterViewModel {
         
         if !canRegister { return }
         
-        // TODO: Processo de cadastro
+        let attributes = generateKeychainAttributes(name, email, password, "\(image)")
+        if registerUserOnKeychain(attributes) {
+            self.delegate?.dismissPage()
+        } else {
+            self.delegate?.showAlertInEmail(with: "Email ja cadastrado")
+        }
     }
     private func validateName(with name: String) {
         if name == "" || name.count < 3 {
@@ -53,5 +59,17 @@ class RegisterViewModel {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
+    }
+    func generateKeychainAttributes(_ name: String, _ email: String, _ password: String, _ image: String) -> [String: Any] {
+        return [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: name,
+            kSecAttrAccount as String: email,
+            kSecValueData as String: password.data(using: .utf8) as Any,
+            kSecAttrDescription as String: image,
+        ]
+    }
+    func registerUserOnKeychain(_ user: [String:Any]) -> Bool {
+        return SecItemAdd(user as CFDictionary, nil) == noErr
     }
 }

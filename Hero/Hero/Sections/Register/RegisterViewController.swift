@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: KeyboardViewController {
     
     let viewModel = RegisterViewModel()
     let lightgrey = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.00)
@@ -269,8 +269,7 @@ class RegisterViewController: UIViewController {
         present(vc, animated: true)
     }
     @objc func actionRegisterButton() {
-        self.viewModel.registerButtonsClick(name: nameTextField.text, email: emailTextField.text, password: passwordTextField.text)
-        //dismiss(animated: true, completion: nil)
+        self.viewModel.registerButtonsClick(name: nameTextField.text, email: emailTextField.text, password: passwordTextField.text, image: perfilImageView.image!)
     }
 }
 
@@ -297,13 +296,15 @@ extension RegisterViewController: RegisterViewDelegate {
         passwordTextField.layer.borderWidth = 0
         alertPasswordLabel.text = ""
     }
+    func dismissPage() {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage") ] as? UIImage {
             perfilImageView.image = image
-            print(image)
         }
         picker.dismiss(animated: true, completion: nil)
     }
