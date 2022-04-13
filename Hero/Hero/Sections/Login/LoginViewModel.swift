@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 protocol LoginViewDelegate: AnyObject {
     func setEmailToRed()
@@ -14,6 +15,7 @@ protocol LoginViewDelegate: AnyObject {
     func alertDataNoFound()
     func goToHomeView()
     func goToRegisterView()
+    func failedAuthentication(title: String, message: String)
 }
 
 class LoginViewModel {
@@ -26,24 +28,31 @@ class LoginViewModel {
         canEnter = true
         
         verifyFieldEmail(with: email)
-        verifyFieldPassword(with: password)
         
         if !canEnter { return }
         
+        if canLoginWithFaceId(verify: email, and: password) { faceIDAutentication() }
+        else { emailAuthenticate(with: email, and: password) }
+    }
+    func registerButtonClick() {
+        self.delegate?.goToRegisterView()
+    }
+    
+    private func canLoginWithFaceId(verify email: String, and password: String) -> Bool {
+        return email == getLastAccessedEmail() && password == ""
+    }
+    private func emailAuthenticate(with email: String, and password: String) {
+        verifyFieldPassword(with: password)
+        
         if let existingItem = getUserBy(email: email) {
             if validateEmail(email, userData: existingItem) && validatePassword(password, userData: existingItem) {
-                if registerAccess(with: email) {
-                    self.delegate?.goToHomeView()
-                }
+                if registerAccess(with: email) { self.delegate?.goToHomeView() }
             } else {
                 self.delegate?.alertDataNoFound()
             }
         } else {
             self.delegate?.alertDataNoFound()
         }
-    }
-    func registerButtonClick() {
-        self.delegate?.goToRegisterView()
     }
     
     private func verifyFieldEmail(with email: String) {
@@ -120,5 +129,25 @@ class LoginViewModel {
             }
         }
         return ""
+    }
+    
+    private func faceIDAutentication(){
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let text_reason = "We need to access your face"
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: text_reason)
+                { [weak self] success, authenticationError in DispatchQueue.main.async {
+                    if success {
+                        self?.delegate?.goToHomeView()
+                    } else {
+                        self?.delegate?.failedAuthentication(title: "Falha na autenticação", message: "Você não pode ser verificado")
+                    }
+                }
+            }
+        } else {
+            self.delegate?.failedAuthentication(title: "Biometria Indisponível", message: "Seu dispositivo não é configurado para autenticação por biometria")
+        }
     }
 }
