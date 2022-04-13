@@ -90,6 +90,8 @@ class RegisterViewController: KeyboardViewController {
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.keyboardType = .emailAddress
+        textField.autocapitalizationType = UITextAutocapitalizationType.none
         return textField
     }()
     lazy var alertEmailLabel: UILabel = {
