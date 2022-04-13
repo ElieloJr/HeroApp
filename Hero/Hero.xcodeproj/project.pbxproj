@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29B9338227FF601400A1907A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9338127FF601400A1907A /* RegisterViewController.swift */; };
+		29B9338427FF602D00A1907A /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9338327FF602D00A1907A /* RegisterViewModel.swift */; };
 		29D734A327FB73F400C4F2C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D734A227FB73F400C4F2C3 /* AppDelegate.swift */; };
 		29D734A527FB73F400C4F2C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D734A427FB73F400C4F2C3 /* SceneDelegate.swift */; };
 		29D734A727FB73F400C4F2C3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D734A627FB73F400C4F2C3 /* LoginViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29B9338127FF601400A1907A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		29B9338327FF602D00A1907A /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		29D7349F27FB73F400C4F2C3 /* Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29D734A227FB73F400C4F2C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29D734A427FB73F400C4F2C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29B9338027FF5FF700A1907A /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				29B9338127FF601400A1907A /* RegisterViewController.swift */,
+				29B9338327FF602D00A1907A /* RegisterViewModel.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		29D7349627FB73F400C4F2C3 = {
 			isa = PBXGroup;
 			children = (
@@ -86,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				29D734BD27FCDBF400C4F2C3 /* Login */,
-				29D734BE27FCDBFE00C4F2C3 /* Register */,
+				29B9338027FF5FF700A1907A /* Register */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -112,13 +125,6 @@
 				29D734BF27FCDC2B00C4F2C3 /* LoginViewModel.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		29D734BE27FCDBFE00C4F2C3 /* Register */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Register;
 			sourceTree = "<group>";
 		};
 		29D734C127FDC09D00C4F2C3 /* Extensions */ = {
@@ -201,6 +207,8 @@
 			files = (
 				29D734A727FB73F400C4F2C3 /* LoginViewController.swift in Sources */,
 				29D734C327FDC10900C4F2C3 /* KeyboardViewController.swift in Sources */,
+				29B9338227FF601400A1907A /* RegisterViewController.swift in Sources */,
+				29B9338427FF602D00A1907A /* RegisterViewModel.swift in Sources */,
 				29D734A327FB73F400C4F2C3 /* AppDelegate.swift in Sources */,
 				29D734A527FB73F400C4F2C3 /* SceneDelegate.swift in Sources */,
 				29D734C027FCDC2B00C4F2C3 /* LoginViewModel.swift in Sources */,

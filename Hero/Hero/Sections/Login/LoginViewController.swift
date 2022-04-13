@@ -228,6 +228,8 @@ extension LoginViewController: LoginViewDelegate {
         //navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
     }
     func goToRegisterView() {
-        //navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
+        let registerController = UINavigationController(rootViewController: RegisterViewController())
+        registerController.modalPresentationStyle = .fullScreen
+        present(registerController, animated: true)
     }
 }
