@@ -44,10 +44,19 @@ class SearchViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var resultsTableView: UITableView = {
+        let tableView = UITableView(frame: .zero)
+        tableView.backgroundColor = darkGrey
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = darkGrey
+        resultsTableView.delegate = self
+        resultsTableView.dataSource = self
         
         setupNavigationBar()
         setupView()
@@ -73,6 +82,7 @@ class SearchViewController: UIViewController {
         view.addSubview(searchTextField)
         view.addSubview(searchButton)
         view.addSubview(resultLabel)
+        view.addSubview(resultsTableView)
     }
     private func setupConstraints() {
         let searchTextFieldConstraints = [
@@ -91,15 +101,37 @@ class SearchViewController: UIViewController {
             resultLabel.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: 24),
             resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ]
+        let resultsTableViewConstraints = [
+            resultsTableView.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 20),
+            resultsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            resultsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            resultsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
         
         NSLayoutConstraint.activate(searchTextFieldConstraints)
         NSLayoutConstraint.activate(searchButtonConstraints)
         NSLayoutConstraint.activate(resultLabelConstraints)
+        NSLayoutConstraint.activate(resultsTableViewConstraints)
     }
     @objc func doSearchButton() {
         print("Funciona")
     }
     @objc func backButton() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SearchViewController: UITableViewDelegate { }
+
+extension SearchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 50
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = "result"
+        cell.backgroundColor = darkGrey
+        cell.textLabel?.textColor = .white
+        return cell
     }
 }
