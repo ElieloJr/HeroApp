@@ -27,6 +27,12 @@ class SearchViewController: UIViewController {
         leftButton.addTarget(self, action: #selector(backButton), for: .touchUpInside)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        
+        self.navigationItem.title = "Search Hero"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: self.view.frame.height/32)!
+        ]
     }
     @objc func backButton() {
         dismiss(animated: true, completion: nil)
