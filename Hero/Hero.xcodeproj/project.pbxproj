@@ -22,6 +22,7 @@
 		29DDFAF52805F65500EDE2B7 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFAF42805F65500EDE2B7 /* FavoriteTableViewCell.swift */; };
 		29DDFB0F280F3A5C00EDE2B7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB0E280F3A5C00EDE2B7 /* SearchViewController.swift */; };
 		29DDFB11280F3A7700EDE2B7 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB10280F3A7700EDE2B7 /* SearchViewModel.swift */; };
+		29DDFB15280F53A500EDE2B7 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB14280F53A500EDE2B7 /* ResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		29DDFAF42805F65500EDE2B7 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		29DDFB0E280F3A5C00EDE2B7 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		29DDFB10280F3A7700EDE2B7 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		29DDFB14280F53A500EDE2B7 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +154,8 @@
 		29DDFAF32805F58E00EDE2B7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				29DDFAF42805F65500EDE2B7 /* FavoriteTableViewCell.swift */,
+				29DDFB13280F537400EDE2B7 /* Favorite */,
+				29DDFB12280F536A00EDE2B7 /* Result */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -164,6 +167,22 @@
 				29DDFB10280F3A7700EDE2B7 /* SearchViewModel.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		29DDFB12280F536A00EDE2B7 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				29DDFB14280F53A500EDE2B7 /* ResultTableViewCell.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		29DDFB13280F537400EDE2B7 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				29DDFAF42805F65500EDE2B7 /* FavoriteTableViewCell.swift */,
+			);
+			path = Favorite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +257,7 @@
 			files = (
 				29D734A727FB73F400C4F2C3 /* LoginViewController.swift in Sources */,
 				29D734C327FDC10900C4F2C3 /* KeyboardViewController.swift in Sources */,
+				29DDFB15280F53A500EDE2B7 /* ResultTableViewCell.swift in Sources */,
 				29B9338227FF601400A1907A /* RegisterViewController.swift in Sources */,
 				29DDFAF22805B64300EDE2B7 /* HomeViewModel.swift in Sources */,
 				29B9338427FF602D00A1907A /* RegisterViewModel.swift in Sources */,

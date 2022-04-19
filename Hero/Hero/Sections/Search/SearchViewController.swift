@@ -47,7 +47,7 @@ class SearchViewController: UIViewController {
     lazy var resultsTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.backgroundColor = darkGrey
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(ResultTableViewCell.self, forCellReuseIdentifier: ResultTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -121,17 +121,19 @@ class SearchViewController: UIViewController {
     }
 }
 
-extension SearchViewController: UITableViewDelegate { }
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height/4
+    }
+}
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return 2
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "result"
-        cell.backgroundColor = darkGrey
-        cell.textLabel?.textColor = .white
+        let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.identifier, for: indexPath) as! ResultTableViewCell
+        cell.selectedBackgroundView = .none
         return cell
     }
 }

@@ -89,7 +89,6 @@ class HomeViewController: UIViewController {
     }
     
     @objc func exitButton() {
-        // print("Saiu")
         dismiss(animated: true, completion: nil)
     }
     @objc func searchButton() {
