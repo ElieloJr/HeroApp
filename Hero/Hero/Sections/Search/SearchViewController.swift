@@ -36,6 +36,14 @@ class SearchViewController: UIViewController {
         button.addTarget(self, action: #selector(doSearchButton), for: .touchUpInside)
         return button
     }()
+    lazy var resultLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Results:"
+        label.textColor = moreLightgrey
+        label.font = label.font.withSize(view.frame.width/20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +72,7 @@ class SearchViewController: UIViewController {
     private func setupView() {
         view.addSubview(searchTextField)
         view.addSubview(searchButton)
+        view.addSubview(resultLabel)
     }
     private func setupConstraints() {
         let searchTextFieldConstraints = [
@@ -78,8 +87,14 @@ class SearchViewController: UIViewController {
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             searchButton.heightAnchor.constraint(equalToConstant: self.view.frame.height/15)
         ]
+        let resultLabelConstraints = [
+            resultLabel.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: 24),
+            resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        ]
+        
         NSLayoutConstraint.activate(searchTextFieldConstraints)
         NSLayoutConstraint.activate(searchButtonConstraints)
+        NSLayoutConstraint.activate(resultLabelConstraints)
     }
     @objc func doSearchButton() {
         print("Funciona")
