@@ -11,6 +11,7 @@ class SearchViewController: UIViewController {
 
     let lightgrey = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.00)
     let darkGrey = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.00)
+    let moreLightgrey = UIColor(red: 0.60, green: 0.60, blue: 0.60, alpha: 1.00)
     
     lazy var searchTextField: UITextField = {
         let textField = UITextField(frame: .zero)
@@ -24,6 +25,16 @@ class SearchViewController: UIViewController {
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
+    }()
+    lazy var searchButton: UIButton = {
+        var button = UIButton(frame: .zero)
+        button.setTitle("Search", for: .normal)
+        button.titleLabel?.font = button.titleLabel?.font.withSize(20)
+        button.backgroundColor = .red
+        button.layer.cornerRadius = 5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(doSearchButton), for: .touchUpInside)
+        return button
     }()
     
     override func viewDidLoad() {
@@ -52,6 +63,7 @@ class SearchViewController: UIViewController {
     }
     private func setupView() {
         view.addSubview(searchTextField)
+        view.addSubview(searchButton)
     }
     private func setupConstraints() {
         let searchTextFieldConstraints = [
@@ -60,7 +72,17 @@ class SearchViewController: UIViewController {
             searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             searchTextField.heightAnchor.constraint(equalToConstant: self.view.frame.height/15)
         ]
+        let searchButtonConstraints = [
+            searchButton.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 10),
+            searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            searchButton.heightAnchor.constraint(equalToConstant: self.view.frame.height/15)
+        ]
         NSLayoutConstraint.activate(searchTextFieldConstraints)
+        NSLayoutConstraint.activate(searchButtonConstraints)
+    }
+    @objc func doSearchButton() {
+        print("Funciona")
     }
     @objc func backButton() {
         dismiss(animated: true, completion: nil)
