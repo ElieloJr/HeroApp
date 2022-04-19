@@ -93,7 +93,9 @@ class HomeViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @objc func searchButton() {
-        print("Busca")
+        let searchController = UINavigationController(rootViewController: SearchViewController())
+        searchController.modalPresentationStyle = .fullScreen
+        present(searchController, animated: true)
     }
 }
 
