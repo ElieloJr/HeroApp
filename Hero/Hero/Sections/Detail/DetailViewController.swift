@@ -352,6 +352,14 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var groupAffiliationLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Group Affiliation:"
+        label.font = label.font.withSize(view.frame.width/24)
+        label.textColor = moreLightgrey
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -400,6 +408,8 @@ class DetailViewController: UIViewController {
         
         scrollView.addSubview(baseLabel)
         scrollView.addSubview(toBaseLabel)
+        
+        scrollView.addSubview(groupAffiliationLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -569,6 +579,10 @@ class DetailViewController: UIViewController {
             toBaseLabel.leadingAnchor.constraint(equalTo: toPublisherLabel.leadingAnchor),
             toBaseLabel.widthAnchor.constraint(equalToConstant: view.frame.width/1.15)
         ]
+        let groupAffiliationLabelConstraints = [
+            groupAffiliationLabel.topAnchor.constraint(equalTo: toBaseLabel.bottomAnchor, constant: view.frame.width/20),
+            groupAffiliationLabel.leadingAnchor.constraint(equalTo: characterImageView.leadingAnchor)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
@@ -603,14 +617,20 @@ class DetailViewController: UIViewController {
         
         NSLayoutConstraint.activate(publisherLabelConstraints)
         NSLayoutConstraint.activate(toPublisherLabelConstraints)
+        
         NSLayoutConstraint.activate(raceLabelConstraints)
         NSLayoutConstraint.activate(toRaceLabelConstraints)
+        
         NSLayoutConstraint.activate(firstAppearenceLabelConstraints)
         NSLayoutConstraint.activate(toFirstAppearenceLabelConstraints)
+        
         NSLayoutConstraint.activate(placeOfBirthLabelContraints)
         NSLayoutConstraint.activate(toPlaceOfBirthLabelContraints)
+        
         NSLayoutConstraint.activate(baseLabelConstraints)
         NSLayoutConstraint.activate(toBaseLabelConstraints)
+        
+        NSLayoutConstraint.activate(groupAffiliationLabelConstraints)
         
         return scrollView
     }()
