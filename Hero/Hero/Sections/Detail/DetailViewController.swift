@@ -10,6 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     let lightgrey = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.00)
+    let moreLightgrey = UIColor(red: 0.60, green: 0.60, blue: 0.60, alpha: 1.00)
     let darkGrey = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.00)
     
     lazy var characterImageView: UIImageView = {
@@ -20,10 +21,19 @@ class DetailViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    lazy var fullNameLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Full Name:"
+        label.font = label.font.withSize(view.frame.width/24)
+        label.textColor = moreLightgrey
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
         scrollView.addSubview(characterImageView)
+        scrollView.addSubview(fullNameLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -33,8 +43,13 @@ class DetailViewController: UIViewController {
             characterImageView.widthAnchor.constraint(equalToConstant: view.frame.width/2.4),
             characterImageView.heightAnchor.constraint(equalToConstant: view.frame.width/1.6)
         ]
+        let fullNameLabelConstraints = [
+            fullNameLabel.topAnchor.constraint(equalTo: characterImageView.topAnchor),
+            fullNameLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: view.frame.width/25)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
+        NSLayoutConstraint.activate(fullNameLabelConstraints)
         
         return scrollView
     }()
@@ -42,7 +57,7 @@ class DetailViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = .white
-        button.setTitle("   Add to Favorites", for: .normal)
+        button.setTitle(" Add to Favorites", for: .normal)
         button.titleLabel?.font = button.titleLabel?.font.withSize(20)
         button.backgroundColor = lightgrey
         button.layer.cornerRadius = 10
