@@ -39,12 +39,21 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var characterLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Character Name:"
+        label.font = label.font.withSize(view.frame.width/24)
+        label.textColor = moreLightgrey
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
         scrollView.addSubview(characterImageView)
         scrollView.addSubview(fullNameLabel)
         scrollView.addSubview(toFullNameLabel)
+        scrollView.addSubview(characterLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -63,10 +72,15 @@ class DetailViewController: UIViewController {
             toFullNameLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
             toFullNameLabel.widthAnchor.constraint(equalToConstant: view.frame.width/2.2)
         ]
+        let characterLabelConstraints = [
+            characterLabel.topAnchor.constraint(equalTo: toFullNameLabel.bottomAnchor),
+            characterLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
         NSLayoutConstraint.activate(toFullNameLabelConstraints)
+        NSLayoutConstraint.activate(characterLabelConstraints)
         
         return scrollView
     }()
