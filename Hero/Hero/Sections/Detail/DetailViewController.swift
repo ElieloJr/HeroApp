@@ -334,6 +334,14 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var baseLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Base:"
+        label.font = label.font.withSize(view.frame.width/24)
+        label.textColor = moreLightgrey
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -379,6 +387,8 @@ class DetailViewController: UIViewController {
         
         scrollView.addSubview(placeOfBirthLabel)
         scrollView.addSubview(toPlaceOfBirthLabel)
+        
+        scrollView.addSubview(baseLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -539,6 +549,10 @@ class DetailViewController: UIViewController {
             toPlaceOfBirthLabel.leadingAnchor.constraint(equalTo: toPublisherLabel.leadingAnchor),
             toPlaceOfBirthLabel.widthAnchor.constraint(equalToConstant: view.frame.width/1.15)
         ]
+        let baseLabelConstraints = [
+            baseLabel.topAnchor.constraint(equalTo: toPlaceOfBirthLabel.bottomAnchor, constant: view.frame.width/20),
+            baseLabel.leadingAnchor.constraint(equalTo: characterImageView.leadingAnchor)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
@@ -579,6 +593,7 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(toFirstAppearenceLabelConstraints)
         NSLayoutConstraint.activate(placeOfBirthLabelContraints)
         NSLayoutConstraint.activate(toPlaceOfBirthLabelContraints)
+        NSLayoutConstraint.activate(baseLabelConstraints)
         
         return scrollView
     }()
