@@ -342,6 +342,16 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var toBaseLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "..."
+        label.font = label.font.withSize(view.frame.width/18)
+        label.textColor = .white
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 6
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -389,6 +399,7 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(toPlaceOfBirthLabel)
         
         scrollView.addSubview(baseLabel)
+        scrollView.addSubview(toBaseLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -553,6 +564,11 @@ class DetailViewController: UIViewController {
             baseLabel.topAnchor.constraint(equalTo: toPlaceOfBirthLabel.bottomAnchor, constant: view.frame.width/20),
             baseLabel.leadingAnchor.constraint(equalTo: characterImageView.leadingAnchor)
         ]
+        let toBaseLabelConstraints = [
+            toBaseLabel.topAnchor.constraint(equalTo: baseLabel.bottomAnchor, constant: 2),
+            toBaseLabel.leadingAnchor.constraint(equalTo: toPublisherLabel.leadingAnchor),
+            toBaseLabel.widthAnchor.constraint(equalToConstant: view.frame.width/1.15)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
@@ -594,6 +610,7 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(placeOfBirthLabelContraints)
         NSLayoutConstraint.activate(toPlaceOfBirthLabelContraints)
         NSLayoutConstraint.activate(baseLabelConstraints)
+        NSLayoutConstraint.activate(toBaseLabelConstraints)
         
         return scrollView
     }()
