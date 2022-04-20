@@ -268,6 +268,14 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var publisherLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Publisher:"
+        label.font = label.font.withSize(view.frame.width/24)
+        label.textColor = moreLightgrey
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -302,6 +310,7 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(powerSlider)
         scrollView.addSubview(powerLabel)
 
+        scrollView.addSubview(publisherLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -429,6 +438,10 @@ class DetailViewController: UIViewController {
             powerLabel.topAnchor.constraint(equalTo: powerSlider.bottomAnchor, constant: 4),
             powerLabel.leadingAnchor.constraint(equalTo: numberPowerLabel.trailingAnchor, constant: 6)
         ]
+        let publisherLabelConstraints = [
+            publisherLabel.topAnchor.constraint(equalTo: numberStrengthLabel.bottomAnchor, constant: view.frame.width/20),
+            publisherLabel.leadingAnchor.constraint(equalTo: characterImageView.leadingAnchor)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
@@ -460,6 +473,8 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(numberPowerLabelConstraints)
         NSLayoutConstraint.activate(powerSliderConstraints)
         NSLayoutConstraint.activate(powerLabelConstraints)
+        
+        NSLayoutConstraint.activate(publisherLabelConstraints)
         
         return scrollView
     }()
