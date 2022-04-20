@@ -23,6 +23,8 @@
 		29DDFB0F280F3A5C00EDE2B7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB0E280F3A5C00EDE2B7 /* SearchViewController.swift */; };
 		29DDFB11280F3A7700EDE2B7 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB10280F3A7700EDE2B7 /* SearchViewModel.swift */; };
 		29DDFB15280F53A500EDE2B7 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB14280F53A500EDE2B7 /* ResultTableViewCell.swift */; };
+		29DDFB182810377300EDE2B7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB172810377300EDE2B7 /* DetailViewController.swift */; };
+		29DDFB1A28103AA200EDE2B7 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB1928103AA200EDE2B7 /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		29DDFB0E280F3A5C00EDE2B7 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		29DDFB10280F3A7700EDE2B7 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		29DDFB14280F53A500EDE2B7 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		29DDFB172810377300EDE2B7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		29DDFB1928103AA200EDE2B7 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 				29B9338027FF5FF700A1907A /* Register */,
 				29DDFAEE2804B02900EDE2B7 /* Home */,
 				29DDFB0D280F39F900EDE2B7 /* Search */,
+				29DDFB162810373A00EDE2B7 /* Detail */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -183,6 +188,15 @@
 				29DDFAF42805F65500EDE2B7 /* FavoriteTableViewCell.swift */,
 			);
 			path = Favorite;
+			sourceTree = "<group>";
+		};
+		29DDFB162810373A00EDE2B7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				29DDFB172810377300EDE2B7 /* DetailViewController.swift */,
+				29DDFB1928103AA200EDE2B7 /* DetailViewModel.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,8 +281,10 @@
 				29DDFAF02804B07100EDE2B7 /* HomeViewController.swift in Sources */,
 				29D734A527FB73F400C4F2C3 /* SceneDelegate.swift in Sources */,
 				29D734C027FCDC2B00C4F2C3 /* LoginViewModel.swift in Sources */,
+				29DDFB182810377300EDE2B7 /* DetailViewController.swift in Sources */,
 				29D734AD27FB73F400C4F2C3 /* Hero.xcdatamodeld in Sources */,
 				29DDFAF52805F65500EDE2B7 /* FavoriteTableViewCell.swift in Sources */,
+				29DDFB1A28103AA200EDE2B7 /* DetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
