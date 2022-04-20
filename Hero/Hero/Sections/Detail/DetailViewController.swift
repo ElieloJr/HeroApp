@@ -308,6 +308,14 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var toFirstAppearenceLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "..."
+        label.font = UIFont.boldSystemFont(ofSize: view.frame.width/18)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -347,6 +355,7 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(raceLabel)
         scrollView.addSubview(toRaceLabel)
         scrollView.addSubview(firstAppearenceLabel)
+        scrollView.addSubview(toFirstAppearenceLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -494,6 +503,10 @@ class DetailViewController: UIViewController {
             firstAppearenceLabel.topAnchor.constraint(equalTo: toPublisherLabel.bottomAnchor, constant: view.frame.width/20),
             firstAppearenceLabel.leadingAnchor.constraint(equalTo: characterImageView.leadingAnchor)
         ]
+        let toFirstAppearenceLabelConstraints = [
+            toFirstAppearenceLabel.topAnchor.constraint(equalTo: firstAppearenceLabel.bottomAnchor, constant: 2),
+            toFirstAppearenceLabel.leadingAnchor.constraint(equalTo: toPublisherLabel.leadingAnchor)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
@@ -531,6 +544,7 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(raceLabelConstraints)
         NSLayoutConstraint.activate(toRaceLabelConstraints)
         NSLayoutConstraint.activate(firstAppearenceLabelConstraints)
+        NSLayoutConstraint.activate(toFirstAppearenceLabelConstraints)
         
         return scrollView
     }()
