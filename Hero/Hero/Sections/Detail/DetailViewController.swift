@@ -39,11 +39,26 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    lazy var characterLabel: UILabel = {
+    lazy var characterNameLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.text = "Character Name:"
         label.font = label.font.withSize(view.frame.width/24)
         label.textColor = moreLightgrey
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var toCharacterNameLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "..."
+        label.font = UIFont(name: "Chalkduster", size: view.frame.width/12)
+        label.textColor = .white
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 2
+        let attributedString = NSMutableAttributedString(string: label.text!)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.maximumLineHeight = view.frame.width/10.2
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        label.attributedText = attributedString
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -53,7 +68,8 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(characterImageView)
         scrollView.addSubview(fullNameLabel)
         scrollView.addSubview(toFullNameLabel)
-        scrollView.addSubview(characterLabel)
+        scrollView.addSubview(characterNameLabel)
+        scrollView.addSubview(toCharacterNameLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -70,17 +86,23 @@ class DetailViewController: UIViewController {
         let toFullNameLabelConstraints = [
             toFullNameLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor),
             toFullNameLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-            toFullNameLabel.widthAnchor.constraint(equalToConstant: view.frame.width/2.2)
+            toFullNameLabel.widthAnchor.constraint(equalToConstant: view.frame.width/2.1)
         ]
         let characterLabelConstraints = [
-            characterLabel.topAnchor.constraint(equalTo: toFullNameLabel.bottomAnchor),
-            characterLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor)
+            characterNameLabel.topAnchor.constraint(equalTo: toFullNameLabel.bottomAnchor),
+            characterNameLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor)
+        ]
+        let toCharacterNameLabelConstraints = [
+            toCharacterNameLabel.topAnchor.constraint(equalTo: characterNameLabel.bottomAnchor),
+            toCharacterNameLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
+            toCharacterNameLabel.widthAnchor.constraint(equalToConstant: view.frame.width/2.05)
         ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
         NSLayoutConstraint.activate(toFullNameLabelConstraints)
         NSLayoutConstraint.activate(characterLabelConstraints)
+        NSLayoutConstraint.activate(toCharacterNameLabelConstraints)
         
         return scrollView
     }()
