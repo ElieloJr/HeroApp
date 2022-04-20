@@ -287,16 +287,24 @@ class DetailViewController: UIViewController {
     lazy var raceLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.text = "Race:"
-        label.font = label.font.withSize(view.frame.width/24)
+        label.font = label.font.withSize(view.frame.width/18)
         label.textColor = moreLightgrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     lazy var toRaceLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "..."
-        label.font = UIFont.boldSystemFont(ofSize: view.frame.width/18)
+        label.text = "Human"
+        label.font = label.font.withSize(view.frame.width/18)
         label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var firstAppearenceLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "First Appearence:"
+        label.font = label.font.withSize(view.frame.width/24)
+        label.textColor = moreLightgrey
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -338,6 +346,7 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(toPublisherLabel)
         scrollView.addSubview(raceLabel)
         scrollView.addSubview(toRaceLabel)
+        scrollView.addSubview(firstAppearenceLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -481,6 +490,10 @@ class DetailViewController: UIViewController {
             toRaceLabel.topAnchor.constraint(equalTo: raceLabel.bottomAnchor, constant: 2),
             toRaceLabel.leadingAnchor.constraint(equalTo: raceLabel.leadingAnchor, constant: view.frame.width/20)
         ]
+        let firstAppearenceLabelConstraints = [
+            firstAppearenceLabel.topAnchor.constraint(equalTo: toPublisherLabel.bottomAnchor, constant: view.frame.width/20),
+            firstAppearenceLabel.leadingAnchor.constraint(equalTo: characterImageView.leadingAnchor)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
@@ -517,6 +530,7 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(toPublisherLabelConstraints)
         NSLayoutConstraint.activate(raceLabelConstraints)
         NSLayoutConstraint.activate(toRaceLabelConstraints)
+        NSLayoutConstraint.activate(firstAppearenceLabelConstraints)
         
         return scrollView
     }()
