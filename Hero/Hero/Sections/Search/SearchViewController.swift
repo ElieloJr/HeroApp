@@ -20,6 +20,8 @@ class SearchViewController: UIViewController {
         textField.backgroundColor = .white
         textField.font = textField.font?.withSize(22)
         textField.autocapitalizationType = UITextAutocapitalizationType.none
+        textField.returnKeyType = .search
+        textField.delegate = self
         textField.textColor = darkGrey
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
@@ -135,5 +137,13 @@ extension SearchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.identifier, for: indexPath) as! ResultTableViewCell
         cell.selectedBackgroundView = .none
         return cell
+    }
+}
+
+extension SearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        doSearchButton()
+        return true
     }
 }
