@@ -12,9 +12,30 @@ class DetailViewController: UIViewController {
     let lightgrey = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.00)
     let darkGrey = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.00)
     
+    lazy var characterImageView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.backgroundColor = lightgrey
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        
+        scrollView.addSubview(characterImageView)
+        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let characterImageViewConstraints = [
+            characterImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -(view.frame.width/15)),
+            characterImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: view.frame.width/25),
+            characterImageView.widthAnchor.constraint(equalToConstant: view.frame.width/2.4),
+            characterImageView.heightAnchor.constraint(equalToConstant: view.frame.width/1.6)
+        ]
+        
+        NSLayoutConstraint.activate(characterImageViewConstraints)
+        
         return scrollView
     }()
     lazy var favoriteButton: UIButton = {
