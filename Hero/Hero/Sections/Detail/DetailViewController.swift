@@ -360,6 +360,16 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var toGroupAffiliationLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "..."
+        label.font = label.font.withSize(view.frame.width/18)
+        label.textColor = .white
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 8
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -410,11 +420,12 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(toBaseLabel)
         
         scrollView.addSubview(groupAffiliationLabel)
+        scrollView.addSubview(toGroupAffiliationLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         let characterImageViewConstraints = [
-            characterImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -(view.frame.width/15)),
+            characterImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: view.frame.width/25),
             characterImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: view.frame.width/25),
             characterImageView.widthAnchor.constraint(equalToConstant: view.frame.width/2.4),
             characterImageView.heightAnchor.constraint(equalToConstant: view.frame.width/1.6)
@@ -583,6 +594,12 @@ class DetailViewController: UIViewController {
             groupAffiliationLabel.topAnchor.constraint(equalTo: toBaseLabel.bottomAnchor, constant: view.frame.width/20),
             groupAffiliationLabel.leadingAnchor.constraint(equalTo: characterImageView.leadingAnchor)
         ]
+        let toGroupAffiliationLabelConstraints = [
+            toGroupAffiliationLabel.topAnchor.constraint(equalTo: groupAffiliationLabel.bottomAnchor, constant: 2),
+            toGroupAffiliationLabel.leadingAnchor.constraint(equalTo: toPublisherLabel.leadingAnchor),
+            toGroupAffiliationLabel.widthAnchor.constraint(equalToConstant: view.frame.width/1.15),
+            toGroupAffiliationLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -view.frame.width/4)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
@@ -631,6 +648,7 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(toBaseLabelConstraints)
         
         NSLayoutConstraint.activate(groupAffiliationLabelConstraints)
+        NSLayoutConstraint.activate(toGroupAffiliationLabelConstraints)
         
         return scrollView
     }()
@@ -650,6 +668,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = darkGrey
+        navigationController?.isNavigationBarHidden = true
         
         setupView()
         setupConstraints()
@@ -666,7 +685,7 @@ class DetailViewController: UIViewController {
             detailsScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         let favoriteButtonConstraints = [
-            favoriteButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(self.view.frame.width/10)),
+            favoriteButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(self.view.frame.width/12)),
             favoriteButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: self.view.frame.width/5),
             favoriteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(self.view.frame.width/5)),
             favoriteButton.heightAnchor.constraint(equalToConstant:  self.view.frame.width/7.5)
