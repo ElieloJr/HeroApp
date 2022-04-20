@@ -62,6 +62,26 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var powerstatsLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Power Stats:"
+        label.font = label.font.withSize(view.frame.width/24)
+        label.textColor = moreLightgrey
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var numberSmartLabel: UILabel = {
+        let label = UILabel()
+        label.text = "12"
+        label.textColor = darkGrey
+        label.backgroundColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/18)
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -70,6 +90,8 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(toFullNameLabel)
         scrollView.addSubview(characterNameLabel)
         scrollView.addSubview(toCharacterNameLabel)
+        scrollView.addSubview(powerstatsLabel)
+        scrollView.addSubview(numberSmartLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -97,12 +119,24 @@ class DetailViewController: UIViewController {
             toCharacterNameLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
             toCharacterNameLabel.widthAnchor.constraint(equalToConstant: view.frame.width/2.05)
         ]
+        let powerstatsLabelConstraints = [
+            powerstatsLabel.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 20),
+            powerstatsLabel.leadingAnchor.constraint(equalTo: characterImageView.leadingAnchor),
+        ]
+        let numberSmartLabelConstraints = [
+            numberSmartLabel.topAnchor.constraint(equalTo: powerstatsLabel.bottomAnchor, constant: 6),
+            numberSmartLabel.leadingAnchor.constraint(equalTo: powerstatsLabel.leadingAnchor),
+            numberSmartLabel.widthAnchor.constraint(equalToConstant: view.frame.width/10),
+            numberSmartLabel.heightAnchor.constraint(equalToConstant: view.frame.width/10)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
         NSLayoutConstraint.activate(toFullNameLabelConstraints)
         NSLayoutConstraint.activate(characterLabelConstraints)
         NSLayoutConstraint.activate(toCharacterNameLabelConstraints)
+        NSLayoutConstraint.activate(powerstatsLabelConstraints)
+        NSLayoutConstraint.activate(numberSmartLabelConstraints)
         
         return scrollView
     }()
