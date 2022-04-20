@@ -93,6 +93,15 @@ class DetailViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
+    lazy var SmartLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Inteligence".uppercased()
+        label.textColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/21)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -104,6 +113,7 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(powerstatsLabel)
         scrollView.addSubview(numberSmartLabel)
         scrollView.addSubview(smartSlider)
+        scrollView.addSubview(SmartLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -147,6 +157,10 @@ class DetailViewController: UIViewController {
             smartSlider.widthAnchor.constraint(equalToConstant: view.frame.width/3),
             smartSlider.heightAnchor.constraint(equalToConstant: 5)
         ]
+        let SmartLabelConstraints = [
+            SmartLabel.topAnchor.constraint(equalTo: smartSlider.bottomAnchor, constant: 4),
+            SmartLabel.leadingAnchor.constraint(equalTo: numberSmartLabel.trailingAnchor, constant: 6)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
@@ -154,8 +168,10 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(characterLabelConstraints)
         NSLayoutConstraint.activate(toCharacterNameLabelConstraints)
         NSLayoutConstraint.activate(powerstatsLabelConstraints)
+        
         NSLayoutConstraint.activate(numberSmartLabelConstraints)
         NSLayoutConstraint.activate(smartSliderConstraints)
+        NSLayoutConstraint.activate(SmartLabelConstraints)
         
         return scrollView
     }()
