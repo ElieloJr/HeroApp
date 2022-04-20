@@ -72,7 +72,7 @@ class DetailViewController: UIViewController {
     }()
     lazy var numberSmartLabel: UILabel = {
         let label = UILabel()
-        label.text = "12"
+        label.text = "0"
         label.textColor = darkGrey
         label.backgroundColor = moreLightgrey
         label.textAlignment = .center
@@ -81,6 +81,17 @@ class DetailViewController: UIViewController {
         label.layer.masksToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    lazy var smartSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.value = 0
+        slider.tintColor = .red
+        slider.minimumTrackTintColor = .clear
+        slider.thumbTintColor = .clear
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
     }()
     lazy var detailsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -92,6 +103,7 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(toCharacterNameLabel)
         scrollView.addSubview(powerstatsLabel)
         scrollView.addSubview(numberSmartLabel)
+        scrollView.addSubview(smartSlider)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -129,6 +141,12 @@ class DetailViewController: UIViewController {
             numberSmartLabel.widthAnchor.constraint(equalToConstant: view.frame.width/10),
             numberSmartLabel.heightAnchor.constraint(equalToConstant: view.frame.width/10)
         ]
+        let smartSliderConstraints = [
+            smartSlider.topAnchor.constraint(equalTo: numberSmartLabel.topAnchor),
+            smartSlider.leadingAnchor.constraint(equalTo: numberSmartLabel.trailingAnchor, constant: -8),
+            smartSlider.widthAnchor.constraint(equalToConstant: view.frame.width/3),
+            smartSlider.heightAnchor.constraint(equalToConstant: 5)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
@@ -137,6 +155,7 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(toCharacterNameLabelConstraints)
         NSLayoutConstraint.activate(powerstatsLabelConstraints)
         NSLayoutConstraint.activate(numberSmartLabelConstraints)
+        NSLayoutConstraint.activate(smartSliderConstraints)
         
         return scrollView
     }()
