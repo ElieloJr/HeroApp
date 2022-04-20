@@ -87,8 +87,9 @@ class DetailViewController: UIViewController {
         slider.minimumValue = 0
         slider.maximumValue = 100
         slider.value = 0
-        slider.tintColor = .red
-        slider.minimumTrackTintColor = .clear
+        if slider.value == 100 { slider.maximumTrackTintColor = .red }
+        slider.tintColor = lightgrey
+        slider.minimumTrackTintColor = .red
         slider.thumbTintColor = .clear
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
@@ -96,6 +97,171 @@ class DetailViewController: UIViewController {
     lazy var SmartLabel: UILabel = {
         let label = UILabel()
         label.text = "Inteligence".uppercased()
+        label.textColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/21)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var numberDurabilityLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0"
+        label.textColor = darkGrey
+        label.backgroundColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/18)
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var durabilitySlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.value = 0
+        if slider.value == 100 { slider.maximumTrackTintColor = .red }
+        slider.tintColor = .red
+        slider.minimumTrackTintColor = .red
+        slider.thumbTintColor = .clear
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
+    }()
+    lazy var durabilityLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Durability".uppercased()
+        label.textColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/21)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var numberStrengthLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0"
+        label.textColor = darkGrey
+        label.backgroundColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/18)
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var strengthSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.value = 0
+        if slider.value == 100 { slider.maximumTrackTintColor = .red }
+        slider.tintColor = .red
+        slider.minimumTrackTintColor = .red
+        slider.thumbTintColor = .clear
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
+    }()
+    lazy var strengthLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Strength".uppercased()
+        label.textColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/21)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var numberSpeedLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0"
+        label.textColor = darkGrey
+        label.backgroundColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/18)
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var speedSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.value = 0
+        if slider.value == 100 { slider.maximumTrackTintColor = .red }
+        slider.tintColor = .red
+        slider.minimumTrackTintColor = .red
+        slider.thumbTintColor = .clear
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
+    }()
+    lazy var speedLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Speed".uppercased()
+        label.textColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/21)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var numberCombatLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0"
+        label.textColor = darkGrey
+        label.backgroundColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/18)
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var combatSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.value = 0
+        if slider.value == 100 { slider.maximumTrackTintColor = .red }
+        slider.tintColor = .red
+        slider.minimumTrackTintColor = .red
+        slider.thumbTintColor = .clear
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
+    }()
+    lazy var combatLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Combat".uppercased()
+        label.textColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/21)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var numberPowerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0"
+        label.textColor = darkGrey
+        label.backgroundColor = moreLightgrey
+        label.textAlignment = .center
+        label.font = label.font.withSize(view.frame.width/18)
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var powerSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.value = 0
+        if slider.value == 100 { slider.maximumTrackTintColor = .red }
+        slider.tintColor = .red
+        slider.minimumTrackTintColor = .red
+        slider.thumbTintColor = .clear
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
+    }()
+    lazy var powerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Power".uppercased()
         label.textColor = moreLightgrey
         label.textAlignment = .center
         label.font = label.font.withSize(view.frame.width/21)
@@ -111,9 +277,31 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(characterNameLabel)
         scrollView.addSubview(toCharacterNameLabel)
         scrollView.addSubview(powerstatsLabel)
+        
         scrollView.addSubview(numberSmartLabel)
         scrollView.addSubview(smartSlider)
         scrollView.addSubview(SmartLabel)
+        
+        scrollView.addSubview(numberDurabilityLabel)
+        scrollView.addSubview(durabilitySlider)
+        scrollView.addSubview(durabilityLabel)
+        
+        scrollView.addSubview(numberStrengthLabel)
+        scrollView.addSubview(strengthSlider)
+        scrollView.addSubview(strengthLabel)
+        
+        scrollView.addSubview(numberSpeedLabel)
+        scrollView.addSubview(speedSlider)
+        scrollView.addSubview(speedLabel)
+        
+        scrollView.addSubview(numberCombatLabel)
+        scrollView.addSubview(combatSlider)
+        scrollView.addSubview(combatLabel)
+        
+        scrollView.addSubview(numberPowerLabel)
+        scrollView.addSubview(powerSlider)
+        scrollView.addSubview(powerLabel)
+
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -153,13 +341,93 @@ class DetailViewController: UIViewController {
         ]
         let smartSliderConstraints = [
             smartSlider.topAnchor.constraint(equalTo: numberSmartLabel.topAnchor),
-            smartSlider.leadingAnchor.constraint(equalTo: numberSmartLabel.trailingAnchor, constant: -8),
-            smartSlider.widthAnchor.constraint(equalToConstant: view.frame.width/3),
+            smartSlider.leadingAnchor.constraint(equalTo: numberSmartLabel.trailingAnchor, constant: 4),
+            smartSlider.widthAnchor.constraint(equalToConstant: view.frame.width/3.2),
             smartSlider.heightAnchor.constraint(equalToConstant: 5)
         ]
         let SmartLabelConstraints = [
             SmartLabel.topAnchor.constraint(equalTo: smartSlider.bottomAnchor, constant: 4),
             SmartLabel.leadingAnchor.constraint(equalTo: numberSmartLabel.trailingAnchor, constant: 6)
+        ]
+        let numberDurabilityLabelConstraints = [
+            numberDurabilityLabel.topAnchor.constraint(equalTo: numberSmartLabel.bottomAnchor, constant: 8),
+            numberDurabilityLabel.leadingAnchor.constraint(equalTo: numberSmartLabel.leadingAnchor),
+            numberDurabilityLabel.widthAnchor.constraint(equalToConstant: view.frame.width/10),
+            numberDurabilityLabel.heightAnchor.constraint(equalToConstant: view.frame.width/10)
+        ]
+        let durabilitySliderConstraints = [
+            durabilitySlider.topAnchor.constraint(equalTo: numberDurabilityLabel.topAnchor),
+            durabilitySlider.leadingAnchor.constraint(equalTo: numberDurabilityLabel.trailingAnchor, constant: 4),
+            durabilitySlider.widthAnchor.constraint(equalToConstant: view.frame.width/3.2),
+            durabilitySlider.heightAnchor.constraint(equalToConstant: 5)
+        ]
+        let durabilityLabelConstraints = [
+            durabilityLabel.topAnchor.constraint(equalTo: durabilitySlider.bottomAnchor, constant: 4),
+            durabilityLabel.leadingAnchor.constraint(equalTo: numberDurabilityLabel.trailingAnchor, constant: 6)
+        ]
+        let numberStrengthLabelConstraints = [
+            numberStrengthLabel.topAnchor.constraint(equalTo: numberDurabilityLabel.bottomAnchor, constant: 8),
+            numberStrengthLabel.leadingAnchor.constraint(equalTo: numberDurabilityLabel.leadingAnchor),
+            numberStrengthLabel.widthAnchor.constraint(equalToConstant: view.frame.width/10),
+            numberStrengthLabel.heightAnchor.constraint(equalToConstant: view.frame.width/10)
+        ]
+        let strengthSliderConstraints = [
+            strengthSlider.topAnchor.constraint(equalTo: numberStrengthLabel.topAnchor),
+            strengthSlider.leadingAnchor.constraint(equalTo: numberStrengthLabel.trailingAnchor, constant: 4),
+            strengthSlider.widthAnchor.constraint(equalToConstant: view.frame.width/3.2),
+            strengthSlider.heightAnchor.constraint(equalToConstant: 5)
+        ]
+        let strengthLabelConstraints = [
+            strengthLabel.topAnchor.constraint(equalTo: strengthSlider.bottomAnchor, constant: 4),
+            strengthLabel.leadingAnchor.constraint(equalTo: numberStrengthLabel.trailingAnchor, constant: 6)
+        ]
+        let numberSpeedLabelConstraints = [
+            numberSpeedLabel.topAnchor.constraint(equalTo: powerstatsLabel.bottomAnchor, constant: 6),
+            numberSpeedLabel.leadingAnchor.constraint(equalTo: smartSlider.trailingAnchor, constant: view.frame.width/25),
+            numberSpeedLabel.widthAnchor.constraint(equalToConstant: view.frame.width/10),
+            numberSpeedLabel.heightAnchor.constraint(equalToConstant: view.frame.width/10)
+        ]
+        let speedSliderConstraints = [
+            speedSlider.topAnchor.constraint(equalTo: numberSpeedLabel.topAnchor),
+            speedSlider.leadingAnchor.constraint(equalTo: numberSpeedLabel.trailingAnchor, constant: 4),
+            speedSlider.widthAnchor.constraint(equalToConstant: view.frame.width/3.2),
+            speedSlider.heightAnchor.constraint(equalToConstant: 5)
+        ]
+        let speedLabelConstraints = [
+            speedLabel.topAnchor.constraint(equalTo: speedSlider.bottomAnchor, constant: 4),
+            speedLabel.leadingAnchor.constraint(equalTo: numberSpeedLabel.trailingAnchor, constant: 6)
+        ]
+        let numberCombatLabelConstraints = [
+            numberCombatLabel.topAnchor.constraint(equalTo: numberSpeedLabel.bottomAnchor, constant: 8),
+            numberCombatLabel.leadingAnchor.constraint(equalTo: numberSpeedLabel.leadingAnchor),
+            numberCombatLabel.widthAnchor.constraint(equalToConstant: view.frame.width/10),
+            numberCombatLabel.heightAnchor.constraint(equalToConstant: view.frame.width/10)
+        ]
+        let combatSliderConstraints = [
+            combatSlider.topAnchor.constraint(equalTo: numberCombatLabel.topAnchor),
+            combatSlider.leadingAnchor.constraint(equalTo: numberCombatLabel.trailingAnchor, constant: 4),
+            combatSlider.widthAnchor.constraint(equalToConstant: view.frame.width/3.2),
+            combatSlider.heightAnchor.constraint(equalToConstant: 5)
+        ]
+        let combatLabelConstraints = [
+            combatLabel.topAnchor.constraint(equalTo: combatSlider.bottomAnchor, constant: 4),
+            combatLabel.leadingAnchor.constraint(equalTo: numberCombatLabel.trailingAnchor, constant: 6)
+        ]
+        let numberPowerLabelConstraints = [
+            numberPowerLabel.topAnchor.constraint(equalTo: numberCombatLabel.bottomAnchor, constant: 8),
+            numberPowerLabel.leadingAnchor.constraint(equalTo: numberCombatLabel.leadingAnchor),
+            numberPowerLabel.widthAnchor.constraint(equalToConstant: view.frame.width/10),
+            numberPowerLabel.heightAnchor.constraint(equalToConstant: view.frame.width/10)
+        ]
+        let powerSliderConstraints = [
+            powerSlider.topAnchor.constraint(equalTo: numberPowerLabel.topAnchor),
+            powerSlider.leadingAnchor.constraint(equalTo: numberPowerLabel.trailingAnchor, constant: 4),
+            powerSlider.widthAnchor.constraint(equalToConstant: view.frame.width/3.2),
+            powerSlider.heightAnchor.constraint(equalToConstant: 5)
+        ]
+        let powerLabelConstraints = [
+            powerLabel.topAnchor.constraint(equalTo: powerSlider.bottomAnchor, constant: 4),
+            powerLabel.leadingAnchor.constraint(equalTo: numberPowerLabel.trailingAnchor, constant: 6)
         ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
@@ -172,6 +440,26 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(numberSmartLabelConstraints)
         NSLayoutConstraint.activate(smartSliderConstraints)
         NSLayoutConstraint.activate(SmartLabelConstraints)
+        
+        NSLayoutConstraint.activate(numberDurabilityLabelConstraints)
+        NSLayoutConstraint.activate(durabilitySliderConstraints)
+        NSLayoutConstraint.activate(durabilityLabelConstraints)
+        
+        NSLayoutConstraint.activate(numberStrengthLabelConstraints)
+        NSLayoutConstraint.activate(strengthSliderConstraints)
+        NSLayoutConstraint.activate(strengthLabelConstraints)
+        
+        NSLayoutConstraint.activate(numberSpeedLabelConstraints)
+        NSLayoutConstraint.activate(speedSliderConstraints)
+        NSLayoutConstraint.activate(speedLabelConstraints)
+        
+        NSLayoutConstraint.activate(numberCombatLabelConstraints)
+        NSLayoutConstraint.activate(combatSliderConstraints)
+        NSLayoutConstraint.activate(combatLabelConstraints)
+        
+        NSLayoutConstraint.activate(numberPowerLabelConstraints)
+        NSLayoutConstraint.activate(powerSliderConstraints)
+        NSLayoutConstraint.activate(powerLabelConstraints)
         
         return scrollView
     }()
