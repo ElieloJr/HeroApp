@@ -294,7 +294,7 @@ class DetailViewController: UIViewController {
     }()
     lazy var toRaceLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "Human"
+        label.text = "..."
         label.font = label.font.withSize(view.frame.width/18)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -321,6 +321,16 @@ class DetailViewController: UIViewController {
         label.text = "Place of Birth:"
         label.font = label.font.withSize(view.frame.width/24)
         label.textColor = moreLightgrey
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var toPlaceOfBirthLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "..."
+        label.font = label.font.withSize(view.frame.width/18)
+        label.textColor = .white
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 6
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -360,11 +370,15 @@ class DetailViewController: UIViewController {
 
         scrollView.addSubview(publisherLabel)
         scrollView.addSubview(toPublisherLabel)
+        
         scrollView.addSubview(raceLabel)
         scrollView.addSubview(toRaceLabel)
+        
         scrollView.addSubview(firstAppearenceLabel)
         scrollView.addSubview(toFirstAppearenceLabel)
+        
         scrollView.addSubview(placeOfBirthLabel)
+        scrollView.addSubview(toPlaceOfBirthLabel)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -520,6 +534,11 @@ class DetailViewController: UIViewController {
             placeOfBirthLabel.topAnchor.constraint(equalTo: toFirstAppearenceLabel.bottomAnchor, constant: view.frame.width/20),
             placeOfBirthLabel.leadingAnchor.constraint(equalTo: characterImageView.leadingAnchor)
         ]
+        let toPlaceOfBirthLabelContraints = [
+            toPlaceOfBirthLabel.topAnchor.constraint(equalTo: placeOfBirthLabel.bottomAnchor, constant: 2),
+            toPlaceOfBirthLabel.leadingAnchor.constraint(equalTo: toPublisherLabel.leadingAnchor),
+            toPlaceOfBirthLabel.widthAnchor.constraint(equalToConstant: view.frame.width/1.15)
+        ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
         NSLayoutConstraint.activate(fullNameLabelConstraints)
@@ -559,6 +578,7 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(firstAppearenceLabelConstraints)
         NSLayoutConstraint.activate(toFirstAppearenceLabelConstraints)
         NSLayoutConstraint.activate(placeOfBirthLabelContraints)
+        NSLayoutConstraint.activate(toPlaceOfBirthLabelContraints)
         
         return scrollView
     }()
