@@ -26,6 +26,7 @@
 		29DDFB182810377300EDE2B7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB172810377300EDE2B7 /* DetailViewController.swift */; };
 		29DDFB1A28103AA200EDE2B7 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB1928103AA200EDE2B7 /* DetailViewModel.swift */; };
 		29DDFB1E2812CF7800EDE2B7 /* DetailAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB1D2812CF7800EDE2B7 /* DetailAPIResponse.swift */; };
+		29DDFB202812D87300EDE2B7 /* DetailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB1F2812D87300EDE2B7 /* DetailAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		29DDFB172810377300EDE2B7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		29DDFB1928103AA200EDE2B7 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		29DDFB1D2812CF7800EDE2B7 /* DetailAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAPIResponse.swift; sourceTree = "<group>"; };
+		29DDFB1F2812D87300EDE2B7 /* DetailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 		29DDFB1C2812CEF800EDE2B7 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				29DDFB1F2812D87300EDE2B7 /* DetailAPI.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				29DDFB11280F3A7700EDE2B7 /* SearchViewModel.swift in Sources */,
 				29D734A327FB73F400C4F2C3 /* AppDelegate.swift in Sources */,
 				29DDFB1E2812CF7800EDE2B7 /* DetailAPIResponse.swift in Sources */,
+				29DDFB202812D87300EDE2B7 /* DetailAPI.swift in Sources */,
 				29DDFB0F280F3A5C00EDE2B7 /* SearchViewController.swift in Sources */,
 				29DDFAF02804B07100EDE2B7 /* HomeViewController.swift in Sources */,
 				29D734A527FB73F400C4F2C3 /* SceneDelegate.swift in Sources */,
