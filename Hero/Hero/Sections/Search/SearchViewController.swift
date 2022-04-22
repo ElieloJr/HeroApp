@@ -49,16 +49,15 @@ class SearchViewController: UIViewController {
     lazy var resultsTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.backgroundColor = darkGrey
+        tableView.separatorColor = .clear
         tableView.register(ResultTableViewCell.self, forCellReuseIdentifier: ResultTableViewCell.identifier)
+        tableView.register(NoFoundTableViewCell.self, forCellReuseIdentifier: NoFoundTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
+    let viewModel = SearchViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = darkGrey
-        resultsTableView.delegate = self
-        resultsTableView.dataSource = self
         
         setupNavigationBar()
         setupView()
@@ -81,6 +80,12 @@ class SearchViewController: UIViewController {
         ]
     }
     private func setupView() {
+        view.backgroundColor = darkGrey
+        
+        viewModel.delegate = self
+        resultsTableView.delegate = self
+        resultsTableView.dataSource = self
+        
         view.addSubview(searchTextField)
         view.addSubview(searchButton)
         view.addSubview(resultLabel)
@@ -116,7 +121,7 @@ class SearchViewController: UIViewController {
         NSLayoutConstraint.activate(resultsTableViewConstraints)
     }
     @objc func doSearchButton() {
-        print("Funciona")
+        viewModel.searchData(with: searchTextField.text)
     }
     @objc func backButton() {
         dismiss(animated: true, completion: nil)
@@ -135,12 +140,21 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        if viewModel.getHeroList().count == 0 { return 1 }
+        else { return viewModel.getHeroList().count }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.identifier, for: indexPath) as! ResultTableViewCell
-        cell.selectedBackgroundView = .none
-        return cell
+        if viewModel.getHeroList().count != 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.identifier, for: indexPath) as! ResultTableViewCell
+            cell.selectedBackgroundView = .none
+            cell.configureView(with: viewModel.detailsHero[indexPath.row])
+            return cell
+        } else {
+            let noFoundCell = tableView.dequeueReusableCell(withIdentifier: NoFoundTableViewCell.identifier, for: indexPath) as! NoFoundTableViewCell
+            noFoundCell.selectedBackgroundView = .none
+            noFoundCell.isUserInteractionEnabled = false
+            return noFoundCell
+        }
     }
 }
 
@@ -150,4 +164,18 @@ extension SearchViewController: UITextFieldDelegate {
         doSearchButton()
         return true
     }
+}
+
+extension SearchViewController: SearchViewDelegate {
+    func setCellHero() {
+        //
+    }
+    
+    func reloadData() {
+        DispatchQueue.main.async {
+            self.resultsTableView.reloadData()
+        }
+    }
+    
+    
 }

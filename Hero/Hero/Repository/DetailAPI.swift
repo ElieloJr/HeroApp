@@ -10,8 +10,8 @@ import Foundation
 class DetailAPI {
     static let shared = DetailAPI()
     
-    func getDetailsHero(completion: @escaping (Result<[Details], Error>) -> Void) {
-        guard let url = URL(string: "https://www.superheroapi.com/api.php/2019125954935922/search/bat") else { return }
+    func getDetailsHero(with heroName: String, completion: @escaping (Result<[Details], Error>) -> Void) {
+        guard let url = URL(string: "https://www.superheroapi.com/api.php/2019125954935922/search/\(heroName)") else { return }
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data, error == nil else { return }
             do {
