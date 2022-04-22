@@ -8,7 +8,6 @@
 import Foundation
 
 protocol SearchViewDelegate: AnyObject {
-    func setCellHero()
     func reloadData()
 }
 

@@ -121,6 +121,7 @@ class SearchViewController: UIViewController {
         NSLayoutConstraint.activate(resultsTableViewConstraints)
     }
     @objc func doSearchButton() {
+        searchTextField.resignFirstResponder()
         viewModel.searchData(with: searchTextField.text)
     }
     @objc func backButton() {
@@ -133,8 +134,10 @@ extension SearchViewController: UITableViewDelegate {
         return view.frame.height/4
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailController = UINavigationController(rootViewController: DetailViewController())
-        present(detailController, animated: true)
+        let detailViewController = DetailViewController()
+        let rootDetailController = UINavigationController(rootViewController: detailViewController)
+        detailViewController.viewModel.detailsHero = viewModel.getHeroList()[indexPath.row]
+        present(rootDetailController, animated: true)
     }
 }
 
@@ -167,10 +170,6 @@ extension SearchViewController: UITextFieldDelegate {
 }
 
 extension SearchViewController: SearchViewDelegate {
-    func setCellHero() {
-        //
-    }
-    
     func reloadData() {
         DispatchQueue.main.async {
             self.resultsTableView.reloadData()
