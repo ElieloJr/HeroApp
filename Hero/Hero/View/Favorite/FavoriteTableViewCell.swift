@@ -111,8 +111,12 @@ class FavoriteTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(fullNameLabelConstraints)
         NSLayoutConstraint.activate(editoraViewConstraints)
     }
-    func configureView() {
-        let urlString = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"
+    func configureView(with hero: FavoritesHeros) {
+        fullNameLabel.text = hero.fullName
+        characterNameLabel.text = hero.characterName
+        editoraLabel.text = hero.publisher
+        
+        guard let urlString = hero.image else { return }
         guard let imageURL = URL(string: urlString) else { return }
         DispatchQueue.global().async {
             guard let imageData = try? Data(contentsOf: imageURL) else { return }

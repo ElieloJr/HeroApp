@@ -673,7 +673,6 @@ class DetailViewController: UIViewController {
         view.backgroundColor = darkGrey
         navigationController?.isNavigationBarHidden = true
         viewModel.delegate = self
-        viewModel.setupCamps()
         
         setupView()
         setupConstraints()
@@ -681,6 +680,9 @@ class DetailViewController: UIViewController {
     private func setupView() {
         view.addSubview(detailsScrollView)
         view.addSubview(favoriteButton)
+        
+        viewModel.setupCampsWithSearch()
+        viewModel.setupCampsWithFavorite()
     }
     private func setupConstraints() {
         let detailsScrollViewConstraints = [
@@ -700,7 +702,7 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(favoriteButtonConstraints)
     }
     @objc func addToFavoritesButton() {
-        favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        viewModel.setFavoriteHero()
     }
 }
 
@@ -719,67 +721,95 @@ extension DetailViewController: DetailViewDelegate {
             }
         }
     }
-    func setPowerStats(with powerstats: Powerstats) {
-        if powerstats.intelligence == "null"{
+    func setPowerStats(inteligence: String, durability: String, strength: String, speed: String, combat: String, power: String) {
+        if inteligence == "null"{
             numberSmartLabel.text = "--"
-            smartSlider.value = Float(powerstats.intelligence) ?? 0
+            smartSlider.value = Float(inteligence) ?? 0
         } else {
-            numberSmartLabel.text = powerstats.intelligence
-            smartSlider.value = Float(powerstats.intelligence) ?? 0
+            numberSmartLabel.text = inteligence
+            smartSlider.value = Float(inteligence) ?? 0
         }
-        if powerstats.durability == "null"{
+        if durability == "null"{
             numberDurabilityLabel.text = "--"
-            durabilitySlider.value = Float(powerstats.durability) ?? 0
+            durabilitySlider.value = Float(durability) ?? 0
         } else {
-            numberDurabilityLabel.text = powerstats.durability
-            durabilitySlider.value = Float(powerstats.durability) ?? 0
+            numberDurabilityLabel.text = durability
+            durabilitySlider.value = Float(durability) ?? 0
         }
-        if powerstats.strength == "null"{
+        if strength == "null"{
             numberStrengthLabel.text = "--"
-            durabilitySlider.value = Float(powerstats.strength) ?? 0
+            durabilitySlider.value = Float(strength) ?? 0
         } else {
-            numberStrengthLabel.text = powerstats.strength
-            strengthSlider.value = Float(powerstats.strength) ?? 0
+            numberStrengthLabel.text = strength
+            strengthSlider.value = Float(strength) ?? 0
         }
-        if powerstats.speed == "null"{
+        if speed == "null"{
             numberSpeedLabel.text = "--"
-            speedSlider.value = Float(powerstats.speed) ?? 0
+            speedSlider.value = Float(speed) ?? 0
         } else {
-            numberSpeedLabel.text = powerstats.speed
-            speedSlider.value = Float(powerstats.speed) ?? 0
+            numberSpeedLabel.text = speed
+            speedSlider.value = Float(speed) ?? 0
         }
-        if powerstats.combat == "null"{
+        if combat == "null"{
             numberCombatLabel.text = "--"
-            combatSlider.value = Float(powerstats.combat) ?? 0
+            combatSlider.value = Float(combat) ?? 0
         } else {
-            numberCombatLabel.text = powerstats.combat
-            combatSlider.value = Float(powerstats.combat) ?? 0
+            numberCombatLabel.text = combat
+            combatSlider.value = Float(combat) ?? 0
         }
-        if powerstats.power == "null"{
+        if power == "null"{
             numberPowerLabel.text = "--"
-            powerSlider.value = Float(powerstats.power) ?? 0
+            powerSlider.value = Float(power) ?? 0
         } else {
-            numberPowerLabel.text = powerstats.power
-            powerSlider.value = Float(powerstats.power) ?? 0
+            numberPowerLabel.text = power
+            powerSlider.value = Float(power) ?? 0
         }
     }
-    func setOuthesInfo(with hero: Details) {
-        if hero.biography.publisher == "-" || hero.biography.publisher == "null" { toPublisherLabel.text = "--" }
-        else { toPublisherLabel.text = hero.biography.publisher }
+    func setOuthesInfo(publisher: String, race: String, firstAppearence: String, placeOfBirth: String, base: String, groupAffiliation: String) {
+        if publisher == "-" || publisher == "null" { toPublisherLabel.text = "--" }
+        else { toPublisherLabel.text = publisher }
         
-        if hero.appearance.race == "null" { toRaceLabel.text = "--" }
-        else { toRaceLabel.text = hero.appearance.race }
+        if race == "null" { toRaceLabel.text = "--" }
+        else { toRaceLabel.text = race }
         
-        if hero.biography.firstAppearance == "-" { toFirstAppearenceLabel.text = "--"}
-        else { toFirstAppearenceLabel.text = hero.biography.firstAppearance }
+        if firstAppearence == "-" { toFirstAppearenceLabel.text = "--"}
+        else { toFirstAppearenceLabel.text = firstAppearence }
         
-        if hero.biography.placeOfAppearance == "-" { toPlaceOfBirthLabel.text = "--" }
-        else { toPlaceOfBirthLabel.text = hero.biography.placeOfAppearance }
+        if placeOfBirth == "-" { toPlaceOfBirthLabel.text = "--" }
+        else { toPlaceOfBirthLabel.text = placeOfBirth }
         
-        if hero.work.base == "-" { toBaseLabel.text = "--" }
-        else { toBaseLabel.text = hero.work.base }
+        if base == "-" { toBaseLabel.text = "--" }
+        else { toBaseLabel.text = base }
         
-        if hero.connections.groupAffiliation == "-" { toGroupAffiliationLabel.text = "--" }
-        else { toGroupAffiliationLabel.text = hero.connections.groupAffiliation }
+        if groupAffiliation == "-" { toGroupAffiliationLabel.text = "--" }
+        else { toGroupAffiliationLabel.text = groupAffiliation }
+    }
+    func addFavorite() {
+        favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        favoriteButton.backgroundColor = .white
+        favoriteButton.setTitleColor(UIColor.black, for: .normal)
+        favoriteButton.tintColor = lightgrey
+        favoriteButton.setTitle(" Remove from Favorites", for: .normal)
+    }
+    func removeFavorite() {
+        favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        favoriteButton.tintColor = .white
+        favoriteButton.setTitle(" Add to Favorites", for: .normal)
+        favoriteButton.backgroundColor = lightgrey
+    }
+    func setFavoriteButton() {
+        if favoriteButton.backgroundColor == lightgrey {
+            favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            favoriteButton.tintColor = lightgrey
+            favoriteButton.backgroundColor = .white
+            favoriteButton.setTitle(" Remove from Favorites", for: .normal)
+            favoriteButton.setTitleColor(UIColor.black, for: .normal)
+        } else {
+            favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            favoriteButton.tintColor = .white
+            favoriteButton.backgroundColor = lightgrey
+            favoriteButton.setTitle(" Add to Favorites", for: .normal)
+            favoriteButton.setTitleColor(UIColor.white, for: .normal)
+        }
     }
 }
