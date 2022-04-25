@@ -28,6 +28,7 @@ class FavoriteTableViewCell: UITableViewCell {
         label.text = "Full name"
         label.font = label.font.withSize(contentView.frame.width/18)
         label.textColor = moreLightgrey
+        label.numberOfLines = 3
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -92,7 +93,8 @@ class FavoriteTableViewCell: UITableViewCell {
         ]
         let fullNameLabelConstraints = [
             fullNameLabel.bottomAnchor.constraint(equalTo: characterNameLabel.topAnchor, constant: -5),
-            fullNameLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: contentView.frame.width/30)
+            fullNameLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: contentView.frame.width/30),
+            fullNameLabel.widthAnchor.constraint(equalToConstant: (contentView.frame.width/5)*2.75)
         ]
         let characterNameLabelConstraints = [
             characterNameLabel.centerYAnchor.constraint(equalTo: characterImageView.centerYAnchor, constant: 5),

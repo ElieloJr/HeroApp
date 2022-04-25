@@ -13,8 +13,6 @@ protocol DetailViewDelegate: AnyObject {
     func setHeader(with fullName: String, _ characterName: String, and characterImage: String)
     func setPowerStats(inteligence: String, durability: String, strength: String, speed: String, combat: String, power: String)
     func setOuthesInfo(publisher: String, race: String, firstAppearence: String, placeOfBirth: String, base: String, groupAffiliation: String)
-    func addFavorite()
-    func removeFavorite()
     func setFavoriteButton()
 }
 
@@ -62,7 +60,7 @@ class DetailViewModel {
                                 groupAffiliation: favorite.groupAffiliation!)
         delegate?.setFavoriteButton()
     }
-    func setFavoriteHero() {
+    func addFavoriteHero() {
         guard let hero = detailsHero else { return }
         
         saveFavorite(with: hero) { (result) in
@@ -71,6 +69,15 @@ class DetailViewModel {
                 if finished { self.delegate?.setFavoriteButton() }
             case .failure(_): print("Não deu certo") }
         }
+    }
+    func removeFavoriteHero() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete(favoriteHero! as NSManagedObject)
+        do {
+            try managedContext.save()
+            self.delegate?.setFavoriteButton()
+        } catch _ { }
     }
 }
 

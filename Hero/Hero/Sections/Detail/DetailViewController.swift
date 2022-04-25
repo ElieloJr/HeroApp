@@ -702,7 +702,11 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate(favoriteButtonConstraints)
     }
     @objc func addToFavoritesButton() {
-        viewModel.setFavoriteHero()
+        if favoriteButton.backgroundColor == lightgrey {
+            viewModel.addFavoriteHero()
+        } else {
+            viewModel.removeFavoriteHero()
+        }
     }
 }
 
@@ -783,19 +787,6 @@ extension DetailViewController: DetailViewDelegate {
         
         if groupAffiliation == "-" { toGroupAffiliationLabel.text = "--" }
         else { toGroupAffiliationLabel.text = groupAffiliation }
-    }
-    func addFavorite() {
-        favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        favoriteButton.backgroundColor = .white
-        favoriteButton.setTitleColor(UIColor.black, for: .normal)
-        favoriteButton.tintColor = lightgrey
-        favoriteButton.setTitle(" Remove from Favorites", for: .normal)
-    }
-    func removeFavorite() {
-        favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        favoriteButton.tintColor = .white
-        favoriteButton.setTitle(" Add to Favorites", for: .normal)
-        favoriteButton.backgroundColor = lightgrey
     }
     func setFavoriteButton() {
         if favoriteButton.backgroundColor == lightgrey {

@@ -24,6 +24,8 @@ class HomeViewController: UIViewController {
     lazy var favoriteHeroTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.backgroundColor = darkGrey
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -98,6 +100,14 @@ class HomeViewController: UIViewController {
         let searchController = UINavigationController(rootViewController: SearchViewController())
         searchController.modalPresentationStyle = .fullScreen
         present(searchController, animated: true)
+    }
+    @objc func refreshData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.favoriteHeroTableView.refreshControl?.endRefreshing()
+            self.favoriteHeroTableView.refreshControl?.isHidden = true
+            self.viewModel.fetch()
+            self.favoriteHeroTableView.reloadData()
+        }
     }
 }
 
