@@ -204,8 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				29DDFB4228181D4900EDE2B7 /* CoreData */,
-				29DDFB3E28181D2F00EDE2B7 /* PerfilUser+CoreDataClass.swift */,
-				29DDFB3F28181D2F00EDE2B7 /* PerfilUser+CoreDataProperties.swift */,
 				29DDFB1D2812CF7800EDE2B7 /* DetailAPIResponse.swift */,
 			);
 			path = Model;
@@ -230,10 +228,28 @@
 		29DDFB4228181D4900EDE2B7 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				29DDFB4328181E7900EDE2B7 /* FavoritesEntity */,
+				29DDFB4428181EAF00EDE2B7 /* PerfilUserEntity */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		29DDFB4328181E7900EDE2B7 /* FavoritesEntity */ = {
+			isa = PBXGroup;
+			children = (
 				29DDFB3A28170D0500EDE2B7 /* FavoritesHeros+CoreDataClass.swift */,
 				29DDFB3B28170D0500EDE2B7 /* FavoritesHeros+CoreDataProperties.swift */,
 			);
-			path = CoreData;
+			path = FavoritesEntity;
+			sourceTree = "<group>";
+		};
+		29DDFB4428181EAF00EDE2B7 /* PerfilUserEntity */ = {
+			isa = PBXGroup;
+			children = (
+				29DDFB3E28181D2F00EDE2B7 /* PerfilUser+CoreDataClass.swift */,
+				29DDFB3F28181D2F00EDE2B7 /* PerfilUser+CoreDataProperties.swift */,
+			);
+			path = PerfilUserEntity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
