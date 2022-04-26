@@ -30,6 +30,8 @@
 		29DDFB25281321BC00EDE2B7 /* NoFoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB24281321BB00EDE2B7 /* NoFoundTableViewCell.swift */; };
 		29DDFB3C28170D0500EDE2B7 /* FavoritesHeros+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB3A28170D0500EDE2B7 /* FavoritesHeros+CoreDataClass.swift */; };
 		29DDFB3D28170D0500EDE2B7 /* FavoritesHeros+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB3B28170D0500EDE2B7 /* FavoritesHeros+CoreDataProperties.swift */; };
+		29DDFB4028181D2F00EDE2B7 /* PerfilUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB3E28181D2F00EDE2B7 /* PerfilUser+CoreDataClass.swift */; };
+		29DDFB4128181D2F00EDE2B7 /* PerfilUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DDFB3F28181D2F00EDE2B7 /* PerfilUser+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		29DDFB24281321BB00EDE2B7 /* NoFoundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFoundTableViewCell.swift; sourceTree = "<group>"; };
 		29DDFB3A28170D0500EDE2B7 /* FavoritesHeros+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoritesHeros+CoreDataClass.swift"; sourceTree = "<group>"; };
 		29DDFB3B28170D0500EDE2B7 /* FavoritesHeros+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoritesHeros+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		29DDFB3E28181D2F00EDE2B7 /* PerfilUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PerfilUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		29DDFB3F28181D2F00EDE2B7 /* PerfilUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PerfilUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,8 +203,9 @@
 		29DDFB1B2812CEE100EDE2B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				29DDFB3A28170D0500EDE2B7 /* FavoritesHeros+CoreDataClass.swift */,
-				29DDFB3B28170D0500EDE2B7 /* FavoritesHeros+CoreDataProperties.swift */,
+				29DDFB4228181D4900EDE2B7 /* CoreData */,
+				29DDFB3E28181D2F00EDE2B7 /* PerfilUser+CoreDataClass.swift */,
+				29DDFB3F28181D2F00EDE2B7 /* PerfilUser+CoreDataProperties.swift */,
 				29DDFB1D2812CF7800EDE2B7 /* DetailAPIResponse.swift */,
 			);
 			path = Model;
@@ -220,6 +225,15 @@
 				29DDFB24281321BB00EDE2B7 /* NoFoundTableViewCell.swift */,
 			);
 			path = "No Found";
+			sourceTree = "<group>";
+		};
+		29DDFB4228181D4900EDE2B7 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				29DDFB3A28170D0500EDE2B7 /* FavoritesHeros+CoreDataClass.swift */,
+				29DDFB3B28170D0500EDE2B7 /* FavoritesHeros+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +314,7 @@
 				29DDFAF22805B64300EDE2B7 /* HomeViewModel.swift in Sources */,
 				29B9338427FF602D00A1907A /* RegisterViewModel.swift in Sources */,
 				29DDFB11280F3A7700EDE2B7 /* SearchViewModel.swift in Sources */,
+				29DDFB4128181D2F00EDE2B7 /* PerfilUser+CoreDataProperties.swift in Sources */,
 				29D734A327FB73F400C4F2C3 /* AppDelegate.swift in Sources */,
 				29DDFB3C28170D0500EDE2B7 /* FavoritesHeros+CoreDataClass.swift in Sources */,
 				29DDFB3D28170D0500EDE2B7 /* FavoritesHeros+CoreDataProperties.swift in Sources */,
@@ -310,6 +325,7 @@
 				29D734A527FB73F400C4F2C3 /* SceneDelegate.swift in Sources */,
 				29D734C027FCDC2B00C4F2C3 /* LoginViewModel.swift in Sources */,
 				29DDFB182810377300EDE2B7 /* DetailViewController.swift in Sources */,
+				29DDFB4028181D2F00EDE2B7 /* PerfilUser+CoreDataClass.swift in Sources */,
 				29D734AD27FB73F400C4F2C3 /* Hero.xcdatamodeld in Sources */,
 				29DDFAF52805F65500EDE2B7 /* FavoriteTableViewCell.swift in Sources */,
 				29DDFB1A28103AA200EDE2B7 /* DetailViewModel.swift in Sources */,
