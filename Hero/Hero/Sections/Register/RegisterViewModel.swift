@@ -33,7 +33,7 @@ class RegisterViewModel {
         
         let attributes = generateKeychainAttributes(name, email, password)
         if registerUserOnKeychain(attributes) {
-            savePerfilUser(email: email, image: "\(String(describing: image.pngData()))") { result in
+            savePerfilUser(email: email, image: image) { result in
                 switch result {
                 case .success(let finished): if finished { self.delegate?.dismissPage() }
                 case .failure(let error): print(error)
@@ -80,7 +80,7 @@ class RegisterViewModel {
 }
 
 extension RegisterViewModel {
-    private func savePerfilUser(email: String, image: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+    private func savePerfilUser(email: String, image: UIImage, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "PerfilUser", in: managedContext)!

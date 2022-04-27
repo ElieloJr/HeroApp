@@ -8,7 +8,13 @@
 import UIKit
 import CoreData
 
+protocol HomeViewDelegate: AnyObject {
+    func setUserImage(with image: UIImage)
+}
+
 class HomeViewModel {
+    var delegate: HomeViewDelegate?
+    
     var favorites: [FavoritesHeros] = []
     var emailUser = ""
     
@@ -39,17 +45,17 @@ class HomeViewModel {
             case .failure(let error): print(error)
             }
         }
+    }
+    func fetchPerfilImage() {
         fetchPerfilUser { result in
             switch result {
             case .success(let users):
                 for user in users {
                     if user.email == self.emailUser {
-                        print("\(String(describing: user.email)) -> \(String(describing: user.image))")
+                        self.delegate?.setUserImage(with: user.image)
                     }
                 }
-            case .failure(_):
-                print("")
-            }
+            case .failure(_): print("") }
         }
     }
 }

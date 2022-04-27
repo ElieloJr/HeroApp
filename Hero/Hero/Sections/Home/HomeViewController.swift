@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
         tableView.backgroundColor = darkGrey
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -34,11 +35,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = darkGrey
-        favoriteHeroTableView.delegate = self
-        favoriteHeroTableView.dataSource = self
-        favoriteHeroTableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.identifier)
-        
-        viewModel.fetch()
         
         setNavigationItem()
         setupView()
@@ -46,8 +42,8 @@ class HomeViewController: UIViewController {
     }
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
-    func setNavigationItem() {
-        let leftButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 60))
+    lazy var leftButton: UIButton = {
+        let leftButton: UIButton = UIButton()
         leftButton.setImage(UIImage(systemName: "person.fill"), for: .normal)
         leftButton.tintColor = .white
         leftButton.backgroundColor = lightgrey
@@ -55,7 +51,14 @@ class HomeViewController: UIViewController {
         leftButton.contentHorizontalAlignment = .fill
         leftButton.layer.cornerRadius = 10
         leftButton.addTarget(self, action: #selector(exitButton), for: .touchUpInside)
-        
+        leftButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            leftButton.widthAnchor.constraint(equalToConstant: 50),
+            leftButton.heightAnchor.constraint(equalToConstant: (navigationController?.navigationBar.frame.height)!)
+        ])
+        return leftButton
+    }()
+    func setNavigationItem() {
         let rightButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 45, height: 40))
         rightButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         rightButton.tintColor = .white
@@ -75,6 +78,12 @@ class HomeViewController: UIViewController {
         ]
     }
     func setupView() {
+        favoriteHeroTableView.delegate = self
+        favoriteHeroTableView.dataSource = self
+        
+        viewModel.fetch()
+        viewModel.delegate = self
+        
         view.addSubview(favoritesLabel)
         view.addSubview(favoriteHeroTableView)
     }
@@ -113,6 +122,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.fetchPerfilImage()
         return viewModel.favorites.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -134,3 +144,10 @@ extension HomeViewController: UITableViewDelegate {
     }
 }
 
+extension HomeViewController: HomeViewDelegate {
+    func setUserImage(with image: UIImage) {
+        leftButton.setImage(image, for: .normal)
+        leftButton.layer.cornerRadius = 8
+        leftButton.layer.masksToBounds = true
+    }
+}

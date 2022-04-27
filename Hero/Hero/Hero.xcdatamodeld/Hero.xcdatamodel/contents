@@ -21,7 +21,7 @@
     <entity name="PerfilUser" representedClassName="PerfilUser" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="image" attributeType="Transformable" customClassName="UIImage"/>
     </entity>
     <elements>
         <element name="FavoritesHeros" positionX="-18" positionY="27" width="128" height="269"/>

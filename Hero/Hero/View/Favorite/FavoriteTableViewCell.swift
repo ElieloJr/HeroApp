@@ -53,7 +53,7 @@ class FavoriteTableViewCell: UITableViewCell {
         let label = UILabel(frame: .zero)
         label.text = "Publisher"
         label.textColor = darkGrey
-        label.font = UIFont.systemFont(ofSize: contentView.frame.width/20, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: contentView.frame.width/21, weight: .bold)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -105,7 +105,7 @@ class FavoriteTableViewCell: UITableViewCell {
             editoraView.topAnchor.constraint(equalTo: characterNameLabel.bottomAnchor),
             editoraView.leadingAnchor.constraint(equalTo: characterNameLabel.leadingAnchor),
             editoraView.heightAnchor.constraint(equalToConstant: contentView.frame.height/7),
-            editoraView.widthAnchor.constraint(equalToConstant: contentView.frame.width/3)
+            editoraView.widthAnchor.constraint(equalToConstant: contentView.frame.width/2.5)
         ]
         
         NSLayoutConstraint.activate(characterImageViewConstraints)
