@@ -5,10 +5,10 @@
    - Consultar seus poderes, origem afiliações...
     
 ## Funções Implementadas
-   -- Face Id
-   -- Cadastro local
-   -- Favoritar o personagem
-   -- Consulta 
+   - Face Id
+   - Cadastro local
+   - Favoritar o personagem
+   - Consulta 
     
 ## API utilizada:
     https://superheroapi.com/
