@@ -313,6 +313,7 @@ class DetailViewController: UIViewController {
         label.text = "..."
         label.font = UIFont.boldSystemFont(ofSize: view.frame.width/18)
         label.textColor = .white
+        label.numberOfLines = 3
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -440,7 +441,7 @@ class DetailViewController: UIViewController {
             toFullNameLabel.widthAnchor.constraint(equalToConstant: view.frame.width/2.1)
         ]
         let characterLabelConstraints = [
-            characterNameLabel.topAnchor.constraint(equalTo: toFullNameLabel.bottomAnchor),
+            characterNameLabel.topAnchor.constraint(equalTo: toFullNameLabel.bottomAnchor, constant: 15),
             characterNameLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor)
         ]
         let toCharacterNameLabelConstraints = [
@@ -570,7 +571,8 @@ class DetailViewController: UIViewController {
         ]
         let toFirstAppearenceLabelConstraints = [
             toFirstAppearenceLabel.topAnchor.constraint(equalTo: firstAppearenceLabel.bottomAnchor, constant: 2),
-            toFirstAppearenceLabel.leadingAnchor.constraint(equalTo: toPublisherLabel.leadingAnchor)
+            toFirstAppearenceLabel.leadingAnchor.constraint(equalTo: toPublisherLabel.leadingAnchor),
+            toFirstAppearenceLabel.widthAnchor.constraint(equalToConstant: view.frame.width/1.15)
         ]
         let placeOfBirthLabelContraints = [
             placeOfBirthLabel.topAnchor.constraint(equalTo: toFirstAppearenceLabel.bottomAnchor, constant: view.frame.width/20),
@@ -665,10 +667,13 @@ class DetailViewController: UIViewController {
         return button
     }()
 
+    var viewModel = DetailViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = darkGrey
         navigationController?.isNavigationBarHidden = true
+        viewModel.delegate = self
+        viewModel.setupCamps()
         
         setupView()
         setupConstraints()
@@ -696,5 +701,85 @@ class DetailViewController: UIViewController {
     }
     @objc func addToFavoritesButton() {
         favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+    }
+}
+
+extension DetailViewController: DetailViewDelegate {
+    func setHeader(with fullName: String, _ characterName: String, and characterImage: String) {
+        if fullName == "" {  toFullNameLabel.text = "--" }
+        else { toFullNameLabel.text = fullName }
+        
+        toCharacterNameLabel.text = characterName
+        guard let imageURL = URL(string: characterImage) else { return }
+        DispatchQueue.global().async {
+            guard let imageData = try? Data(contentsOf: imageURL) else { return }
+            let imageEnd = UIImage(data: imageData)
+            DispatchQueue.main.async {
+                self.characterImageView.image = imageEnd
+            }
+        }
+    }
+    func setPowerStats(with powerstats: Powerstats) {
+        if powerstats.intelligence == "null"{
+            numberSmartLabel.text = "--"
+            smartSlider.value = Float(powerstats.intelligence) ?? 0
+        } else {
+            numberSmartLabel.text = powerstats.intelligence
+            smartSlider.value = Float(powerstats.intelligence) ?? 0
+        }
+        if powerstats.durability == "null"{
+            numberDurabilityLabel.text = "--"
+            durabilitySlider.value = Float(powerstats.durability) ?? 0
+        } else {
+            numberDurabilityLabel.text = powerstats.durability
+            durabilitySlider.value = Float(powerstats.durability) ?? 0
+        }
+        if powerstats.strength == "null"{
+            numberStrengthLabel.text = "--"
+            durabilitySlider.value = Float(powerstats.strength) ?? 0
+        } else {
+            numberStrengthLabel.text = powerstats.strength
+            strengthSlider.value = Float(powerstats.strength) ?? 0
+        }
+        if powerstats.speed == "null"{
+            numberSpeedLabel.text = "--"
+            speedSlider.value = Float(powerstats.speed) ?? 0
+        } else {
+            numberSpeedLabel.text = powerstats.speed
+            speedSlider.value = Float(powerstats.speed) ?? 0
+        }
+        if powerstats.combat == "null"{
+            numberCombatLabel.text = "--"
+            combatSlider.value = Float(powerstats.combat) ?? 0
+        } else {
+            numberCombatLabel.text = powerstats.combat
+            combatSlider.value = Float(powerstats.combat) ?? 0
+        }
+        if powerstats.power == "null"{
+            numberPowerLabel.text = "--"
+            powerSlider.value = Float(powerstats.power) ?? 0
+        } else {
+            numberPowerLabel.text = powerstats.power
+            powerSlider.value = Float(powerstats.power) ?? 0
+        }
+    }
+    func setOuthesInfo(with hero: Details) {
+        if hero.biography.publisher == "-" || hero.biography.publisher == "null" { toPublisherLabel.text = "--" }
+        else { toPublisherLabel.text = hero.biography.publisher }
+        
+        if hero.appearance.race == "null" { toRaceLabel.text = "--" }
+        else { toRaceLabel.text = hero.appearance.race }
+        
+        if hero.biography.firstAppearance == "-" { toFirstAppearenceLabel.text = "--"}
+        else { toFirstAppearenceLabel.text = hero.biography.firstAppearance }
+        
+        if hero.biography.placeOfAppearance == "-" { toPlaceOfBirthLabel.text = "--" }
+        else { toPlaceOfBirthLabel.text = hero.biography.placeOfAppearance }
+        
+        if hero.work.base == "-" { toBaseLabel.text = "--" }
+        else { toBaseLabel.text = hero.work.base }
+        
+        if hero.connections.groupAffiliation == "-" { toGroupAffiliationLabel.text = "--" }
+        else { toGroupAffiliationLabel.text = hero.connections.groupAffiliation }
     }
 }

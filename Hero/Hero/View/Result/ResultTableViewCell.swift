@@ -110,9 +110,11 @@ class ResultTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(fullNameLabelConstraints)
         NSLayoutConstraint.activate(editoraViewConstraints)
     }
-    func configureView() {
-        let urlString = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"
-        guard let imageURL = URL(string: urlString) else { return }
+    func configureView(with hero: Details) {
+        characterNameLabel.text = hero.name
+        fullNameLabel.text = hero.biography.fullName
+        editoraLabel.text = hero.biography.publisher
+        guard let imageURL = URL(string: hero.image.url) else { return }
         DispatchQueue.global().async {
             guard let imageData = try? Data(contentsOf: imageURL) else { return }
             let imageEnd = UIImage(data: imageData)
