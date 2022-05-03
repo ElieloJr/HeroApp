@@ -1,4 +1,4 @@
-# desafio_heroi
+# HeroApp
 
 ## Objetivo
    - Realizar consulta de heróis e personagens de Commic Books
