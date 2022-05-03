@@ -227,9 +227,12 @@ extension LoginViewController: LoginViewDelegate {
         alertLabel.isHidden = false
     }
     func goToHomeView() {
-        let homeController = UINavigationController(rootViewController: HomeViewController())
-        homeController.modalPresentationStyle = .fullScreen
-        present(homeController, animated: true)
+        let homeController = HomeViewController()
+        let rootHomeController = UINavigationController(rootViewController: homeController)
+        rootHomeController.modalPresentationStyle = .fullScreen
+        guard let email = emailTextField.text else { return }
+        homeController.viewModel.emailUser = email
+        present(rootHomeController, animated: true)
     }
     func goToRegisterView() {
         let registerController = UINavigationController(rootViewController: RegisterViewController())

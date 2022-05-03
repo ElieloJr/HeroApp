@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol RegisterViewDelegate: AnyObject {
     func showAlertInName(with message: String)
@@ -30,9 +31,14 @@ class RegisterViewModel {
         
         if !canRegister { return }
         
-        let attributes = generateKeychainAttributes(name, email, password, "\(image)")
+        let attributes = generateKeychainAttributes(name, email, password)
         if registerUserOnKeychain(attributes) {
-            self.delegate?.dismissPage()
+            savePerfilUser(email: email, image: image) { result in
+                switch result {
+                case .success(let finished): if finished { self.delegate?.dismissPage() }
+                case .failure(let error): print(error)
+                }
+            }
         } else {
             self.delegate?.showAlertInEmail(with: "Email ja cadastrado")
         }
@@ -60,16 +66,34 @@ class RegisterViewModel {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
-    func generateKeychainAttributes(_ name: String, _ email: String, _ password: String, _ image: String) -> [String: Any] {
+    func generateKeychainAttributes(_ name: String, _ email: String, _ password: String) -> [String: Any] {
         return [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: name,
             kSecAttrAccount as String: email,
             kSecValueData as String: password.data(using: .utf8) as Any,
-            kSecAttrDescription as String: image,
         ]
     }
     func registerUserOnKeychain(_ user: [String:Any]) -> Bool {
         return SecItemAdd(user as CFDictionary, nil) == noErr
+    }
+}
+
+extension RegisterViewModel {
+    private func savePerfilUser(email: String, image: UIImage, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "PerfilUser", in: managedContext)!
+        let user = NSManagedObject(entity: entity, insertInto: managedContext)
+        user.setValue(UUID(), forKey: "identifier")
+        user.setValue(image, forKey: "image")
+        user.setValue(email, forKey: "email")
+        
+        do {
+            try managedContext.save()
+            completion(.success(true))
+        } catch {
+            completion(.failure(error))
+        }
     }
 }
