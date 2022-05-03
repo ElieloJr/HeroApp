@@ -8,7 +8,7 @@
    - Face Id
    - Cadastro local
    - Favoritar o personagem
-   - Consulta 
+   - Consulta de Personagens / Heróis
     
 ## API utilizada:
     https://superheroapi.com/
