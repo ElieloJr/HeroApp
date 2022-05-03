@@ -28,6 +28,7 @@ class FavoriteTableViewCell: UITableViewCell {
         label.text = "Full name"
         label.font = label.font.withSize(contentView.frame.width/18)
         label.textColor = moreLightgrey
+        label.numberOfLines = 3
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -92,7 +93,8 @@ class FavoriteTableViewCell: UITableViewCell {
         ]
         let fullNameLabelConstraints = [
             fullNameLabel.bottomAnchor.constraint(equalTo: characterNameLabel.topAnchor, constant: -5),
-            fullNameLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: contentView.frame.width/30)
+            fullNameLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: contentView.frame.width/30),
+            fullNameLabel.widthAnchor.constraint(equalToConstant: (contentView.frame.width/5)*2.75)
         ]
         let characterNameLabelConstraints = [
             characterNameLabel.centerYAnchor.constraint(equalTo: characterImageView.centerYAnchor, constant: 5),
@@ -111,8 +113,12 @@ class FavoriteTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(fullNameLabelConstraints)
         NSLayoutConstraint.activate(editoraViewConstraints)
     }
-    func configureView() {
-        let urlString = "https://www.superherodb.com/pictures2/portraits/10/100/639.jpg"
+    func configureView(with hero: FavoritesHeros) {
+        fullNameLabel.text = hero.fullName
+        characterNameLabel.text = hero.characterName
+        editoraLabel.text = hero.publisher
+        
+        guard let urlString = hero.image else { return }
         guard let imageURL = URL(string: urlString) else { return }
         DispatchQueue.global().async {
             guard let imageData = try? Data(contentsOf: imageURL) else { return }

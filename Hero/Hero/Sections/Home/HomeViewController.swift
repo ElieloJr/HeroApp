@@ -24,16 +24,21 @@ class HomeViewController: UIViewController {
     lazy var favoriteHeroTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.backgroundColor = darkGrey
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
+    let viewModel = HomeViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = darkGrey
         favoriteHeroTableView.delegate = self
         favoriteHeroTableView.dataSource = self
         favoriteHeroTableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.identifier)
+        
+        viewModel.fetch()
         
         setNavigationItem()
         setupView()
@@ -96,14 +101,23 @@ class HomeViewController: UIViewController {
         searchController.modalPresentationStyle = .fullScreen
         present(searchController, animated: true)
     }
+    @objc func refreshData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.favoriteHeroTableView.refreshControl?.endRefreshing()
+            self.favoriteHeroTableView.refreshControl?.isHidden = true
+            self.viewModel.fetch()
+            self.favoriteHeroTableView.reloadData()
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return viewModel.favorites.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.identifier, for: indexPath) as! FavoriteTableViewCell
+        cell.configureView(with: viewModel.favorites[indexPath.row])
         return cell
     }
 }
@@ -113,7 +127,9 @@ extension HomeViewController: UITableViewDelegate {
         return view.frame.height/4.2
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailController = UINavigationController(rootViewController: DetailViewController())
-        present(detailController, animated: true)
+        let detailController = DetailViewController()
+        let rootDetailController = UINavigationController(rootViewController: detailController)
+        detailController.viewModel.favoriteHero = viewModel.favorites[indexPath.row]
+        present(rootDetailController, animated: true)
     }
 }
