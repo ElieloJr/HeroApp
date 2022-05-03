@@ -112,4 +112,8 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height/4.2
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailController = UINavigationController(rootViewController: DetailViewController())
+        present(detailController, animated: true)
+    }
 }
